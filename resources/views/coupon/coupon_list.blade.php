@@ -91,10 +91,10 @@
               <div class="card">
                 <div class="card-header bg-gray-light">
                   <h3 class="card-title">All Coupons</h3>
-                  
+
                   <a class="float-right btn btn-success" style="margin-right: 1rem;" href="{{route('assign.coupon')}}"> <i class="fas fa-plus-circle mr-2"></i>Assign Coupon</a>
 
-                  <a class="float-right btn btn-success" style="margin-right: 1rem;" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fas fa-plus-circle mr-2"></i>Upload Coupon</a>
+                  <a class="float-right btn btn-success" style="margin-right: 1rem; color: white" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fas fa-plus-circle mr-2"></i>Upload Coupon</a>
 
                 </div>
                 <!-- /.card-header -->
@@ -209,7 +209,7 @@
                         <td>NA</td>
                         <td> 14 June 2021 03:32 PM</td>
                     </tr>
-                
+
                   </tbody></table>
                 </div>
                 <!-- /.card-body -->
