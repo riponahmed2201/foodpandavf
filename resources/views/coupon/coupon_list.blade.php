@@ -109,19 +109,21 @@
                             <span aria-hidden="true">×</span>
                           </button>
                         </div>
+
                         <div class="modal-body">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Upload</span>
-                              </div>
+                            <form action="{{route('coupon.excel.upload')}}" method="post" enctype="multipart/form-data">
+                              @csrf
                               <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                               </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-success">Uoload</button>
-                        </div>
+                              <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Upload</button>
+                              </div>
+                            </form>
+                          </div>
+
                       </div>
                     </div>
                   </div>

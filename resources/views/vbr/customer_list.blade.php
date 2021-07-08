@@ -59,8 +59,8 @@
                       <div class="col-md-12 col-sm-12">
                         <select required="" class="form-control">
                           <option value="">----select status----</option>
-                          <option value="">Coupon Pending</option>
-                          <option value="">Coupon Taken</option>
+                          <option value="">Gift Pending</option>
+                          <option value="">Gift Taken</option>
                         </select>
                       </div>
                     </div>
@@ -123,24 +123,18 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Phone</th>
-                        <th>Coupon Status</th>
                         <th>Entry Date</th>
                       </tr>
                     </thead>
                      <tbody>
                       <?php $i=1; ?>
                       @foreach($customers as $customer)
-                          <tr>
-                            <td>{{$i++}}</td>
-                            <td>{{$customer->name}}</td>
-                            <td>{{$customer->mobile}}</td>
-                            @if ($customer->status==1)
-                            <td><button class="btn btn-success btn-xs"> Taken</button></td>
-                            @else
-                            <td><button class="btn btn-danger btn-xs"> Pending</button></td>
-                            @endif
-                            <td>{{$customer->created_at}} </td>
-                          </tr>
+                      <tr>
+                        <td>{{$i++}}</td>
+                        <td>{{$customer->name}}</td>
+                        <td>{{$customer->mobile}}</td>
+                        <td>{{$customer->created_at}} </td>
+                      </tr>
                       @endforeach
                    </tbody>
                   </table>

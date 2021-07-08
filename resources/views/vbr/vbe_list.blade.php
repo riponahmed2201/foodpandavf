@@ -79,20 +79,25 @@
                     </div>
                   </div>
                 </div>
+
               </div>
             </form>
           </div>
 
+
           <div class="card-footer">
             <a href=""><button type="submit" id="generate" class="btn btn-success">Generate</button></a>
           </div>
+
 
         </div>
         <div class="row">
             <div class="col-12">
               <div class="card">
                 <div class="card-header bg-gray-light">
-                  <h3 class="card-title">VBR List</h3>
+                  <button class="btn btn-danger btn-sm float-sm-left" id="delete_all" style="margin:5px;"><i class="fa fa-trash"></i> Delete</button>&nbsp
+                <button class="btn btn-success btn-sm float-sm-left" id="active_all" style="margin:5px;"><i class="fa fa-check"></i> Approved?</button>
+                <button class="btn btn-warning btn-sm float-sm-left" id="deactivate_all" style="margin:5px;"><i class="fa fa-exclamation-circle"></i> Inpproved?</button>
                   <a class="float-right btn btn-success" href="{{route('create.vbr')}}"> <i class="fas fa-plus-circle mr-2"></i>Create VBR </a>
                 </div>
                 <!-- /.card-header -->
@@ -111,15 +116,15 @@
                       <?php $i=1; ?>
                     @foreach($vbrData as $vbrData)
                     <tr>
-                      <td>{{$i++}}</td>
+                      <td><input type="checkbox" name="vbrs_ids[]" value="{{$vbrData->id}}"></td>
                       <td>{{$vbrData->name}}</td>
                       <td>{{$vbrData->email}}</td>
                       <td>{{$vbrData->mobile}}</td>
                       <td>
                         @if ($vbrData->status==1)
-                        <a class="updateVbrStatus" id="vbr-{{$vbrData->id}}" vbr_id="{{$vbrData->id}}" href="javascript:void(0)">Approved</a>
+                        <button class="btn btn-success btn-xs">Approved</button>
                         @else
-                        <a class="updateVbrStatus" id="vbr-{{$vbrData->id}}" vbr_id="{{$vbrData->id}}" href="javascript:void(0)">Not Approved</a>
+                        <button class="btn btn-danger btn-xs">Not Approved</button>
                         @endif
                       </td>
                     </tr>
@@ -138,27 +143,198 @@
 
 @section('custom_script')
 <script>
-//   $(document).ready(function() {
-
-// } );
- $(".updateVbrStatus").click(function(){
-    var status=$(this).text();
-    var vbr_id=$(this).attr("vbr_id");
-    $.ajax({
-       type:'post',
-       url:'/vbr/update-status',
-       data:{status:status,vbr_id:vbr_id},
-       success:function(resp){
-          if (resp['status']==1) {
-
-              $("#vbr-"+vbr_id).html("<a class='updateVbrStatus' href='javascript:void(0)'>Approved</a>");
-          }else if (resp['status']==0) {
-              $("#vbr-"+vbr_id).html("<a class='updateVbrStatus' href='javascript:void(0)'>Not Approved</a>");
+$(function () {
+      // delete all selected question id
+      $('#delete_all').click(function () {
+          var ids = [];
+          // get all selected user id
+          $.each($("input[name='vbrs_ids[]']:checked"), function(){
+              ids.push($(this).val());
+          });
+          if (ids.length!==0) {
+              var url = "{{ url('delete/all/vbrs') }}";
+              Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You want to delete?",
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, Delete it!'
+              }).then(function(result) {
+                  if (result.value) {
+                      $.ajax({
+                          url: url,
+                          type: 'POST',
+                          data: {"vbrs_ids": ids, "_token": "{{ csrf_token() }}"},
+                          dataType: "json",
+                          beforeSend:function () {
+                              Swal.fire({
+                                  title: 'Deleting Data.......',
+                                  showConfirmButton: false,
+                                  html: '<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>',
+                                  allowOutsideClick: false
+                              });
+                          },
+                          success:function (response) {
+                              Swal.close();
+                              console.log(response);
+                              if (response==="success"){
+                                  Swal.fire({
+                                      title: 'Successfully Deleted',
+                                      type: 'success',
+                                      confirmButtonColor: '#3085d6',
+                                      confirmButtonText: 'Ok'
+                                  }).then(function(result) {
+                                      if (result.value) {
+                                          window.location.reload();
+                                      }
+                                  });
+                              }
+                          },
+                          error:function (error) {
+                              Swal.close();
+                              console.log(error);
+                          }
+                      })
+                  }
+              });
+          }else{
+              Swal.fire(
+                  'Error',
+                  'Select The Vbr First!',
+                  'error'
+              )
           }
-       },error:function(){
-        alert("Error");
-       }
+      });
     });
- });
+   // activate all selected user id
+  $('#active_all').click(function () {
+      var ids = [];
+      // get all selected user id
+      $.each($("input[name='vbrs_ids[]']:checked"), function(){
+          ids.push($(this).val());
+      });
+      if (ids.length!==0) {
+          var url = "{{ url('activate/all/vbrs') }}";
+          Swal.fire({
+              title: 'Are you sure?',
+              text: "You want to active?",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, Activate'
+          }).then(function(result) {
+              if (result.value) {
+                  $.ajax({
+                      url: url,
+                      type: 'POST',
+                      data: {"vbrs_ids": ids, "_token": "{{ csrf_token() }}"},
+                      dataType: "json",
+                      beforeSend:function () {
+                          Swal.fire({
+                              title: 'Activating Vbr Status.......',
+                              showConfirmButton: false,
+                              html: '<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>',
+                              allowOutsideClick: false
+                          });
+                      },
+                      success:function (response) {
+                          Swal.close();
+                          console.log(response);
+                          if (response==="success"){
+                              Swal.fire({
+                                  title: 'Successfully Activated',
+                                  type: 'success',
+                                  confirmButtonColor: '#3085d6',
+                                  confirmButtonText: 'Ok',
+                                  allowOutsideClick: false
+                              }).then(function(result) {
+                                  if (result.value) {
+                                      window.location.reload();
+                                  }
+                              });
+                          }
+                      },
+                      error:function (error) {
+                          Swal.close();
+                          console.log(error);
+                      }
+                  })
+              }
+          });
+      }else{
+          Swal.fire(
+              'Error',
+              'Select The Vbr First!',
+              'error'
+          )
+      }
+  });
+  // deactivate all selected users
+  $('#deactivate_all').click(function () {
+      var ids = [];
+      // get all selected user id
+      $.each($("input[name='vbrs_ids[]']:checked"), function(){
+          ids.push($(this).val());
+      });
+      if (ids.length!==0) {
+          var url = "{{ url('deactivate/all/vbrs') }}";
+          Swal.fire({
+              title: 'Are you sure?',
+              text: "You want to Deactivate?",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, Deactivate'
+          }).then(function(result) {
+              if (result.value) {
+                  $.ajax({
+                      url: url,
+                      type: 'POST',
+                      data: {"vbrs_ids": ids, "_token": "{{ csrf_token() }}"},
+                      dataType: "json",
+                      beforeSend:function () {
+                          Swal.fire({
+                              title: 'Deactivating Vbr Status.......',
+                              showConfirmButton: false,
+                              html: '<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>',
+                              allowOutsideClick: false
+                          });
+                      },
+                      success:function (response) {
+                          Swal.close();
+                          console.log(response);
+                          if (response==="success"){
+                              Swal.fire({
+                                  title: 'Successfully Deactivated',
+                                  type: 'success',
+                                  confirmButtonColor: '#3085d6',
+                                  confirmButtonText: 'Ok',
+                                  allowOutsideClick: false
+                              }).then(function(result) {
+                                  if (result.value) {
+                                      window.location.reload();
+                                  }
+                              });
+                          }
+                      },
+                      error:function (error) {
+                          Swal.close();
+                          console.log(error);
+                      }
+                  })
+              }
+          });
+      }else{
+          Swal.fire(
+              'Error',
+              'Select The Vbr First!',
+              'error'
+          )
+      }
+  });
 </script>
 @endsection

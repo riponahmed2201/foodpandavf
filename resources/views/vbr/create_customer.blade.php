@@ -48,7 +48,7 @@
                             @endif
                           </div>
                         </div>
-          
+
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Email<span style="color: red;" class="required">*</span></label>
@@ -67,7 +67,7 @@
                             @endif
                           </div>
                         </div>
-                        <div class="col-md-6">
+                       <!--  <div class="col-md-6">
                           <div class="form-group">
                             <label>Date Of Birth</label>
                             <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" value="{{old('date_of_birth')}}" placeholder="Enter Date Of Birth">
@@ -75,8 +75,8 @@
                               <span class="text-danger">{{ $errors->first('date_of_birth') }}</span>
                             @endif
                           </div>
-                        </div>
-                        <div class="col-md-6">
+                        </div> -->
+                        <!-- <div class="col-md-6">
                           <div class="form-group">
                             <label>Location</label>
                             <input type="text" name="location" value="{{old('location')}}" class="form-control" placeholder="Enter Location">
@@ -84,10 +84,10 @@
                               <span class="text-danger">{{ $errors->first('location') }}</span>
                             @endif
                           </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="card-footer">
-                      <button data-toggle="modal" data-target="#exampleModalCenter" type="submit" class="btn btn-primary float-right">Submit</button>
+                      <button data-toggle="modal" data-target="#exampleModalCenter" type="submit" class="btn btn-success float-right">Submit</button>
                       </div>
                 </div>
               </form>
@@ -117,7 +117,7 @@
 
 @section('custom_script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
- 
+
 <script>
     $(function() {
        $('.select2bs4').select2({
