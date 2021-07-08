@@ -24,16 +24,11 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Coupon Code</label>
                     <div class="col-md-12 col-sm-12">
-                      <select required="" class="form-control">
+                      <select required="" name="coupon_code" class="form-control">
                         <option value="">----select Coupon Code----</option>
-                        <option value="">BSH@KSS0171</option>
-                        <option value="">BSH@KSS0171</option>
-                        <option value="">BSH@KSS0171</option>
-                        <option value="">BSH@KSS0171</option>
-                        <option value="">BSH@KSS0171</option>
-                        <option value="">BSH@KSS0171</option>
-                        <option value="">BSH@KSS0171</option>
-                        <option value="">BSH@KSS0171</option>
+                        @foreach ($couponList as $couponRow)
+                            <option value="{{ $couponRow->coupon }}">{{  $couponRow->coupon }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -42,10 +37,10 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Status</label>
                     <div class="col-md-12 col-sm-12">
-                      <select required="" class="form-control">
+                      <select required="" name="coupon_status" class="form-control">
                         <option value="">----select location----</option>
-                        <option value="">Used</option>
-                        <option value="">Not Used</option>
+                        <option value="1">Used</option>
+                        <option value="0">Not Used</option>
                       </select>
                     </div>
                   </div>
@@ -55,7 +50,7 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Assigned</label>
                     <div class="col-md-12 col-sm-12">
-                      <select required="" class="form-control">
+                      <select required="" name="assigned" class="form-control">
                         <option value="">----select Assigned----</option>
                         <option value="">Imran</option>
                         <option value="">Jui</option>
@@ -69,7 +64,7 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Date</label>
                     <div class="col-md-12 col-sm-12">
-                      <input type="date" required="" class="form-control">
+                      <input name="date" type="date" required="" class="form-control">
                     </div>
                   </div>
                 </div>
@@ -82,9 +77,23 @@
           <div class="card-footer">
             <a href=""><button type="submit" id="generate" class="btn btn-success">Generate</button></a>
           </div>
-
-
         </div>
+
+        <div class="col-md-8 offset-2 mt-2">
+            @if ($message = Session::get('success'))
+              <div class="alert alert-success alert-block text-center">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong class="text-center">{{ $message }}</strong>
+              </div>
+            @endif
+
+            @if ($message = Session::get('danger'))
+              <div class="alert alert-danger alert-block text-center">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+              </div>
+            @endif
+          </div>
 
         <div class="row">
             <div class="col-12">
@@ -141,78 +150,27 @@
                     </thead>
                     <tbody>
 
-                    <tr>
-                        <td>1</td>
-                        <td>BSH@KSS0171</td>
-                        <td> <span class="badge badge-danger">Used</span> </td>
-                        <td>Imran</td>
-                        <td> 14 June 2021 03:32 PM</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>BSH@KSS0321</td>
-                        <td> <span class="badge badge-danger">Used</span> </td>
-                        <td>Imran</td>
-                        <td> 14 June 2021 03:32 PM</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>BSH@KSS0173</td>
-                        <td> <span class="badge badge-danger">Used</span> </td>
-                        <td>Jui</td>
-                        <td> 14 June 2021 03:32 PM</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>BSH@KSS0171</td>
-                        <td> <span class="badge badge-danger">Used</span> </td>
-                        <td>Hasan</td>
-                        <td> 14 June 2021 03:32 PM</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>BSH@KSS0171</td>
-                        <td> <span class="badge badge-success">Not Used</span> </td>
-                        <td>NA</td>
-                        <td> 14 June 2021 03:32 PM</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>BSH@KSS0171</td>
-                        <td> <span class="badge badge-success">Not Used</span> </td>
-                        <td>NA</td>
-                        <td> 14 June 2021 03:32 PM</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>BSH@KSS0171</td>
-                        <td> <span class="badge badge-success">Not Used</span> </td>
-                        <td>NA</td>
-                        <td> 14 June 2021 03:32 PM</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>BSH@KSS0171</td>
-                        <td> <span class="badge badge-success">Not Used</span> </td>
-                        <td>NA</td>
-                        <td> 14 June 2021 03:32 PM</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>BSH@KSS0171</td>
-                        <td> <span class="badge badge-success">Not Used</span> </td>
-                        <td>NA</td>
-                        <td> 14 June 2021 03:32 PM</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>BSH@KSS0171</td>
-                        <td> <span class="badge badge-danger">Used</span> </td>
-                        <td>NA</td>
-                        <td> 14 June 2021 03:32 PM</td>
-                    </tr>
+                        @foreach ($couponList as $coupon)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $coupon->coupon }}</td>
+                                <td>
+                                    @if ($coupon->status == 0)
+                                        <span class="badge badge-danger">Not Used</span>
+                                    @else
+                                        <span class="badge badge-sucess">Used</span>
+                                    @endif
 
-                  </tbody></table>
+                                 </td>
+                                <td>{{ $coupon->name }}</td>
+                                <td>
+                                    {{ date('j F Y g:i A', strtotime($coupon->created_at)) }}
+                                </td>
+                            </tr>
+                        @endforeach
+
+                  </tbody>
+                </table>
                 </div>
                 <!-- /.card-body -->
               </div>
@@ -224,6 +182,15 @@
 @endsection
 
 @section('custom_script')
-
-
+<script>
+      $(document).ready(function() {
+    $('#example2').DataTable( {
+        "info": true,
+          "autoWidth": false,
+          scrollX:'50vh',
+          scrollY:'50vh',
+        scrollCollapse: true,
+    } );
+} );
+</script>
 @endsection

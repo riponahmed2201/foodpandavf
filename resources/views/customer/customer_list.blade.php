@@ -73,14 +73,6 @@
                         <select required="" class="form-control">
                           <option value="">----select phone----</option>
                           <option value="">01711050777</option>
-                          <option value="">01782229997</option>
-                          <option value="">01865444522</option>
-                          <option value="">01913932363</option>
-                          <option value="">01313849254</option>
-                          <option value="">01864932479</option>
-                          <option value="">01792643266</option>
-                          <option value="">01969250588</option>
-                          <option value="">01715776705</option>
                         </select>
                       </div>
                     </div>
@@ -99,11 +91,9 @@
               </form>
             </div>
 
-
             <div class="card-footer">
               <a href=""><button type="submit" id="generate" class="btn btn-success">Generate</button></a>
             </div>
-
 
           </div>
 
@@ -135,13 +125,17 @@
                         <td>{{$custdata->name}}</td>
                         <td>{{$custdata->mobile}}</td>
                         <td>{{$custdata->admin_name}}</td>
-                        @if ($custdata->status==1)
-                        <td><button class="btn btn-success btn-xs">Gift Taken</button></td>
-                        @else
-                        <td><button class="btn btn-danger btn-xs">Gift Pending</button></td>
-                        @endif
+                            @if ($custdata->status==1)
+                                <td>
+                                    <span class="badge badge-success">Gift Taken</span>
+                                </td>
+                            @else
+                                <td>
+                                    <span class="badge badge-danger">Gift Pending</span>
+                                </td>
+                            @endif
                         <td>{{$custdata->coupon_code}} </td>
-                        <td>{{$custdata->created_at}} </td>
+                        <td> {{ date('j F Y g:i A', strtotime($custdata->created_at)) }} </td>
                       </tr>
                       @endforeach
                   </tbody>
@@ -157,6 +151,15 @@
 @endsection
 
 @section('custom_script')
-
-
+<script>
+      $(document).ready(function() {
+    $('#example2').DataTable( {
+        "info": true,
+          "autoWidth": false,
+          scrollX:'50vh',
+          scrollY:'50vh',
+        scrollCollapse: true,
+    } );
+} );
+</script>
 @endsection

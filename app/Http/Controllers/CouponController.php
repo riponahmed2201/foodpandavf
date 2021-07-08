@@ -7,16 +7,21 @@ use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Coupon;
 use App\Imports\CouponsImport;
+use App\Models\Admin;
+use Carbon\Carbon;
 
 class CouponController extends Controller
 {
     public function couponList(){
         Session::put('page','couponList');
-        return view('coupon.coupon_list');
+        $couponList = Coupon::all();
+        return view('coupon.coupon_list',compact('couponList'));
     }
 
     public function assignCoupon(){
-        return view('coupon.assign_coupon');
+        $data['vbrList'] = Admin::all();
+        $data['couponList'] = Coupon::all();
+        return view('coupon.assign_coupon',$data);
     }
 
     public function couponBatchUpload(Request $request)
@@ -38,17 +43,19 @@ class CouponController extends Controller
 
         // dd($result);
 
-          for($i =0; $i<count($result[0]) ;$i++){
+            for($i =0; $i<count($result[0]) ;$i++){
 
                   if ($result[0][$i] && $result[0][$i][0] != null) {
                    // dd($result[0][$i][0]);
                     Coupon::create([
-                    'coupon' =>$result[0][$i][0],
+                        'coupon' =>$result[0][$i][0],
+                        'status' => 0,
+                        'assign_date' => date('Y-m-d H:i:s')
                     ]);
                   }
                 }
 
-        return back()->with('success','Coupon batch imported successfully');
+        return back()->with('success','Coupon batch imported successfully!!');
 
     }
 }

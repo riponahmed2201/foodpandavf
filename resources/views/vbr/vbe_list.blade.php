@@ -26,15 +26,9 @@
                     <div class="col-md-12 col-sm-12">
                       <select required="" class="form-control">
                         <option value="">----select name----</option>
-                        <option value="">Imran</option>
-                        <option value="">Suborna</option>
-                        <option value="">Lisa</option>
-                        <option value="">Laboni</option>
-                        <option value="">Rita</option>
-                        <option value="">Keya</option>
-                        <option value="">Mila</option>
-                        <option value="">Lima</option>
-                        <option value="">Maya</option>
+                        @foreach ($vbrData as $name)
+                            <option value="{{ $name->name }}">{{  $name->name }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -46,15 +40,9 @@
                     <div class="col-md-12 col-sm-12">
                       <select required="" class="form-control">
                         <option value="">----select email----</option>
-                        <option value="">imran@gmail.com</option>
-                        <option value="">suborna@gmail.com</option>
-                        <option value="">lisa@gmail.com</option>
-                        <option value="">laboni@gmail.com</option>
-                        <option value="">rita@gmail.com</option>
-                        <option value="">keya@gmail.com</option>
-                        <option value="">mila@gmail.com</option>
-                        <option value="">lima@gmail.com</option>
-                        <option value="">maya@gmail.com</option>
+                        @foreach ($vbrData as $email)
+                            <option value="{{ $email->email }}">{{  $email->email }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -66,15 +54,9 @@
                     <div class="col-md-12 col-sm-12">
                       <select required="" class="form-control">
                         <option value="">----select phone----</option>
-                        <option value="">01711050777</option>
-                        <option value="">01782229997</option>
-                        <option value="">01865444522</option>
-                        <option value="">01913932363</option>
-                        <option value="">01313849254</option>
-                        <option value="">01864932479</option>
-                        <option value="">01792643266</option>
-                        <option value="">01969250588</option>
-                        <option value="">01715776705</option>
+                        @foreach ($vbrData as $phone)
+                            <option value="{{ $phone->mobile }}">{{  $phone->mobile }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
