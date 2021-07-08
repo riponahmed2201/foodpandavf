@@ -9,7 +9,7 @@ route::post('/admin/login','AdminAuthController@login')->name('admin.login');
 
 Route::middleware('admin')->group(function(){
     Route::get('/dashboard','HomeController@index');
-    route::get('/customer/list','Customercontroller@customerlist')->name('customer.list');
+    route::get('/customer/list','CustomerController@customerlist')->name('customer.list');
     route::get('/coupon','CouponController@couponlist')->name('coupon.list');
     route::get('/assign/coupon','CouponController@assigncoupon')->name('assign.coupon');
     route::get('/vbr/list','VbrController@vbrlist')->name('vbr.list');
