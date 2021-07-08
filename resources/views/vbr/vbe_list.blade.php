@@ -79,16 +79,13 @@
                     </div>
                   </div>
                 </div>
-
               </div>
             </form>
           </div>
 
-
           <div class="card-footer">
             <a href=""><button type="submit" id="generate" class="btn btn-success">Generate</button></a>
           </div>
-
 
         </div>
         <div class="row">
@@ -142,7 +139,7 @@
 @section('custom_script')
 <script>
 //   $(document).ready(function() {
-   
+
 // } );
  $(".updateVbrStatus").click(function(){
     var status=$(this).text();
@@ -153,7 +150,7 @@
        data:{status:status,vbr_id:vbr_id},
        success:function(resp){
           if (resp['status']==1) {
-            
+
               $("#vbr-"+vbr_id).html("<a class='updateVbrStatus' href='javascript:void(0)'>Approved</a>");
           }else if (resp['status']==0) {
               $("#vbr-"+vbr_id).html("<a class='updateVbrStatus' href='javascript:void(0)'>Not Approved</a>");

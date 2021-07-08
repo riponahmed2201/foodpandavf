@@ -133,7 +133,7 @@
                       <th>#</th>
                       <th>Coupon Code</th>
                       <th>Status</th>
-                      <th>Assigned</th>
+                      <th>VBR Name</th>
                       <th>Date</th>
                     </tr>
                     </thead>
