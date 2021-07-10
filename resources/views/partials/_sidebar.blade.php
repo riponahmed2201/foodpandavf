@@ -28,7 +28,7 @@
                     @endif
                 <li class="nav-item">
                     <a href="{{url('dashboard')}}" class="nav-link {{$active}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-tachometer-alt text-blue"></i>
                         <p>
                             Dashboard
                         </p>

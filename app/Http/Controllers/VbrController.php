@@ -50,12 +50,41 @@ class VbrController extends Controller
     	return view('vbr.vbe_list',$data);
     }
 
-    public function myCustomer(){
+    public function myCustomer(Request $request){
+
         Session::put('page','mycustomer');
         $vbr_id = session('id');
-        $customers=Customer::where('vbr_id',$vbr_id)->get();
+        $data['customers']=Customer::where('vbr_id',$vbr_id)->get();
+
+        $query = "select * from customers";
+
+        if ($request->isMethod('post')) {
+            $name = $request->name;
+            // $email = $request->email;
+            $mobile = $request->mobile;
+
+            if($name == '-1' && $mobile == '-1'){
+            }else{
+                $query = $query. " where 1=1 ";
+
+                if($name != '-1'){
+                  $query = $query . " AND name = '".$name."'";
+                //  dd($query);
+                }
+
+                if($mobile != '-1'){
+                    $query = $query . " AND mobile = '".$mobile."'";
+                }
+            }
+
+            $data['customersDataList'] = DB::select($query);
+            // dd($data['customersDataList']);
+            return view('vbr.customer_list',$data);
+         }
+
         // dd($customers);
-    	return view('vbr.customer_list')->with(compact('customers'));
+        $data['customersDataList'] = DB::select($query);
+    	return view('vbr.customer_list',$data);
     }
 
     public function couponGenerate(){

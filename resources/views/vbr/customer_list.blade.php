@@ -18,49 +18,18 @@
             </div>
 
             <div class="card-body">
-              <form role="form" action="#" method="get">
+              <form role="form" action="{{ route('mycustomer') }}" method="post">
+                  @csrf
                 <div class="row">
                   <div class="col-sm-4">
                     <div class="form-group">
                       <label>&nbsp;&nbsp; Name</label>
                       <div class="col-md-12 col-sm-12">
-                        <select required="" class="form-control">
-                          <option value="">----select name----</option>
-                          <option value="">Imran</option>
-                          <option value="">Suborna</option>
-                          <option value="">Lisa</option>
-                          <option value="">Laboni</option>
-                          <option value="">Rita</option>
-                          <option value="">Keya</option>
-                          <option value="">Mila</option>
-                          <option value="">Lima</option>
-                          <option value="">Maya</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label>&nbsp;&nbsp; Location</label>
-                      <div class="col-md-12 col-sm-12">
-                        <select required="" class="form-control">
-                          <option value="">----select location----</option>
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label>&nbsp;&nbsp; Status</label>
-                      <div class="col-md-12 col-sm-12">
-                        <select required="" class="form-control">
-                          <option value="">----select status----</option>
-                          <option value="">Gift Pending</option>
-                          <option value="">Gift Taken</option>
+                        <select name="name" class="form-control">
+                            <option value="-1">----select name----</option>
+                            @foreach ($customers as $name)
+                                <option value="{{ $name->name }}">{{  $name->name }}</option>
+                            @endforeach
                         </select>
                       </div>
                     </div>
@@ -70,41 +39,43 @@
                     <div class="form-group">
                       <label>&nbsp;&nbsp; Phone</label>
                       <div class="col-md-12 col-sm-12">
-                        <select required="" class="form-control">
-                          <option value="">----select phone----</option>
-                          <option value="">01711050777</option>
-                          <option value="">01782229997</option>
-                          <option value="">01865444522</option>
-                          <option value="">01913932363</option>
-                          <option value="">01313849254</option>
-                          <option value="">01864932479</option>
-                          <option value="">01792643266</option>
-                          <option value="">01969250588</option>
-                          <option value="">01715776705</option>
+                        <select name="mobile" class="form-control">
+                            <option value="-1">----select phone----</option>
+                            @foreach ($customers as $phone)
+                                <option value="{{ $phone->mobile }}">{{  $phone->mobile }}</option>
+                            @endforeach
                         </select>
                       </div>
                     </div>
                   </div>
 
+                  {{-- <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>&nbsp;&nbsp; Status</label>
+                      <div class="col-md-12 col-sm-12">
+                        <select name="status" class="form-control">
+                          <option value="-1">----select status----</option>
+                          <option value="1">Approved</option>
+                          <option value="0">Inapproved</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div> --}}
+
                   <div class="col-sm-4">
                     <div class="form-group">
                       <label>&nbsp;&nbsp; Entry Date</label>
                       <div class="col-md-12 col-sm-12">
-                        <input type="date" id="from_date" required="" class="form-control">
+                        <input type="date" id="from_date" class="form-control">
                       </div>
                     </div>
                   </div>
-
                 </div>
-              </form>
             </div>
-
-
             <div class="card-footer">
-              <a href=""><button type="submit" id="generate" class="btn btn-success">Generate</button></a>
+              <button type="submit" id="generate" class="btn btn-success">Generate</button>
             </div>
-
-
+        </form>
           </div>
 
           <div class="row">
@@ -128,12 +99,12 @@
                     </thead>
                      <tbody>
                       <?php $i=1; ?>
-                      @foreach($customers as $customer)
+                      @foreach($customersDataList as $customer)
                       <tr>
                         <td>{{$i++}}</td>
                         <td>{{$customer->name}}</td>
                         <td>{{$customer->mobile}}</td>
-                        <td>{{$customer->created_at}} </td>
+                        <td> {{ date('j F Y g:i A', strtotime($customer->created_at)) }} </td>
                       </tr>
                       @endforeach
                    </tbody>

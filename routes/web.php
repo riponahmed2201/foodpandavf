@@ -37,7 +37,7 @@ Route::middleware('admin')->group(function(){
 
 Route::middleware('vbr')->group(function(){
     Route::get('/vbr/dashboard','HomeController@vbrDashboard');
-    Route::get('/my/customer','VbrController@myCustomer')->name('mycustomer');
+    Route::any('/my/customer','VbrController@myCustomer')->name('mycustomer');
     Route::get('/generate/coupon','VbrController@coupongenerate')->name('coupon.generate');
     Route::get('/create/customer','VbrController@createCustomer')->name('create.customer');
     Route::post('/add/customer','VbrController@addCustomer')->name('add.customer');
