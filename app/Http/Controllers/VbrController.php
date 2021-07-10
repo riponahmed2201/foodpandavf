@@ -82,11 +82,6 @@ class VbrController extends Controller
                     $query = $query . " AND created_at = '".$entry_date."'";
                     // dd($query);
                 }
-
-                // if($entry_date != null){
-                //     $query = $query . " AND created_at = '".$entry_date."'";
-                //     // dd($query);
-                // }
             }
 
             $data['customersDataList'] = DB::select($query);
