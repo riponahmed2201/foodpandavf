@@ -23,11 +23,15 @@ class VBRsExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        // return Admin::all();
+        // $getAllName = $this->$id;
+        // if (is_string($this->$id) == 'all') {
+        //     return Admin::select(['id','name','email','mobile'])->get();
+        // }
+       // return Admin::select(['id','name','email','mobile'])->get();
+
         return Admin::select(['id','name','email','mobile'])
-        ->where('id',$this->id)
-        ->get();
-        // return Admin::where('id',1)->get()(['id','name','email','mobile']);
+                    ->where('id',$this->id)
+                    ->get();
     }
 
     public function headings(): array

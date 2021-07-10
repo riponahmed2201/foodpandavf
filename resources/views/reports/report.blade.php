@@ -27,7 +27,7 @@
                     <div class="col-md-12 col-sm-12">
                       <select name="name" class="form-control">
                         <option value="">----select VBR name----</option>
-                        <option value="all">All</option>
+                        {{-- <option value="all">All</option> --}}
                         @foreach ($vbrName as $name)
                             <option value="{{ $name->id }}">{{ $name->name }}</option>
                         @endforeach

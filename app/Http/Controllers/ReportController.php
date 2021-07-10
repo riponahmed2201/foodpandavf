@@ -24,6 +24,12 @@ class ReportController extends Controller
     public function exportToExcelReport(Request $request){
         // dd($request->all());
         $id = $request->name;
-        return Excel::download(new VBRsExport($id), 'report.csv');
+        $all_vbr_name = '';
+        if ($request->name == 'all') {
+            $all_vbr_name = 'all';
+        }else {
+            $all_vbr_name = $request->name;
+        }
+        return Excel::download(new VBRsExport($all_vbr_name), 'report.csv');
       }
 }
