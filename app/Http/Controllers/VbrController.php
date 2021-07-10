@@ -37,14 +37,14 @@ class VbrController extends Controller
 
     public function addCustomer(Request $request){
 
-             $this->validate($request,[
-            'name'=>'required',
-            'email'=>'required|email|unique:customers',
-            'mobile'=>'required',
+        // dd($request->all());
+            $this->validate($request,[
+                'name'=>'required',
+                'email'=>'required|email|unique:customers',
+                'mobile'=>'required',
             ]);
 
             $unUsedCoupon = DB::table('coupons')->select('coupon')->where('status',0)->first();
-            // dd($unUsedCoupon->coupon);
 
             // $chars = "BSH@KSS0171";
             // $coupon_code = "";
@@ -63,8 +63,13 @@ class VbrController extends Controller
              $customer->location = $request->location;
              $customer->coupon_code = $unUsedCoupon->coupon;
              $customer->status=0;
-
              $customer->save();
+
+            Coupon::where('coupon',$unUsedCoupon->coupon)
+            ->update([
+                'status' => 2,
+            ]);
+
              return redirect()->back()->with('success','Customer Created Successfully!');
     }
 
