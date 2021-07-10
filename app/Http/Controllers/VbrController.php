@@ -105,22 +105,35 @@ class VbrController extends Controller
 
     public function addCustomer(Request $request){
 
-        // dd($request->all());
             $this->validate($request,[
                 'name'=>'required',
                 'email'=>'required|email|unique:customers',
-                'mobile'=>'required',
+                'mobile'=>'required|numeric|unique:customers',
             ]);
 
+            $auth = session('id');
+            $vbrMobileNumber =DB::table('admins')->select('mobile')->where('id',$auth)->first();
             $unUsedCoupon = DB::table('coupons')->select('coupon')->where('status',0)->first();
 
-            // $chars = "BSH@KSS0171";
-            // $coupon_code = "";
-            // for ($i = 0; $i < 6; $i++) {
-            //     $coupon_code .= $chars[mt_rand(0, strlen($chars)-1)];
-            // }
+            if ($request->mobile) {
+                $customer_sms_body = "প্রিয় গ্রাহক, আপনার ফুডপান্ডা ইউনিক Voucher কুপন dsadsa তৈরি করা হয়েছে। এই কুপনটি শুধু নতুন User-দের জন্য প্রযোজ্য।";
+                $test = "Customer";
+                $api_url = "https://smsplus.sslwireless.com/api/v3/send-sms?api_token=Smartpick-dfe06f43-a143-4b3a-91e3-f75e071166c5&sid=HIGHVOLNONBRAND&sms=$test&msisdn=88.$request->mobile.&csms_id=123456789";
 
-            $auth = session('id');
+                // dd($request->all());
+                // $api = "http://107.173.27.10/test?amount=" . $amount . "&c_id=" . $campaign_id;
+
+                $output = json_decode(file_get_contents($api_url));
+               // dd($output);
+            }
+            if ($vbrMobileNumber) {
+                $vbr_sms_body = "VBR ID XXXXX, অভিনন্দন আপনি সফলভাবে কাস্টমার নম্বর XXXXXXX  একটি কুপন তৈরি করেছেন।";
+                $test = "VBR";
+                $api_url = "https://smsplus.sslwireless.com/api/v3/send-sms?api_token=Smartpick-dfe06f43-a143-4b3a-91e3-f75e071166c5&sid=HIGHVOLNONBRAND&sms=$test&msisdn=88.$vbrMobileNumber->mobile.&csms_id=123456789";
+                $output = json_decode(file_get_contents($api_url));
+            }
+
+            //dd('ok');
 
              $customer = new Customer;
              $customer->name = $request->name;

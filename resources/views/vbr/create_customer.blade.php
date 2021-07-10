@@ -42,7 +42,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Name<span style="color: red;" class="required">*</span></label>
-                            <input type="text" name="name" value="{{old('name')}}" class="form-control" placeholder="Enter name">
+                            <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control" placeholder="Enter name">
                             @if($errors->has('name'))
                               <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
@@ -52,7 +52,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Email<span style="color: red;" class="required">*</span></label>
-                            <input type="email" name="email" value="{{old('email')}}" class="form-control" placeholder="Enter email">
+                            <input type="email" name="email" id="name" value="{{old('email')}}" class="form-control" placeholder="Enter email">
                             @if($errors->has('email'))
                               <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
@@ -61,55 +61,19 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Mobile<span style="color: red;" class="required">*</span></label>
-                            <input type="number" name="mobile" value="{{old('mobile')}}" class="form-control" placeholder="Enter mobile">
+                            <input type="number" name="mobile" id="mobile" value="{{old('mobile')}}" class="form-control" placeholder="Enter mobile">
                             @if($errors->has('mobile'))
                               <span class="text-danger">{{ $errors->first('mobile') }}</span>
                             @endif
                           </div>
                         </div>
-                       <!--  <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Date Of Birth</label>
-                            <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" value="{{old('date_of_birth')}}" placeholder="Enter Date Of Birth">
-                            @if($errors->has('date_of_birth'))
-                              <span class="text-danger">{{ $errors->first('date_of_birth') }}</span>
-                            @endif
-                          </div>
-                        </div> -->
-                        <!-- <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Location</label>
-                            <input type="text" name="location" value="{{old('location')}}" class="form-control" placeholder="Enter Location">
-                            @if($errors->has('location'))
-                              <span class="text-danger">{{ $errors->first('location') }}</span>
-                            @endif
-                          </div>
-                        </div> -->
                     </div>
                     <div class="card-footer">
-                      <button data-toggle="modal" data-target="#exampleModalCenter" type="submit" class="btn btn-success float-right">Submit</button>
+                      <button  type="sutmit" class="btn btn-success float-right">Submit</button>
                       </div>
                 </div>
               </form>
             </div>
-
-             <!-- modal -->
-            <!--  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-body">
-                      <h3>Customer registered successfully!</h3>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-              <!-- modal -->
-
-
-            <!-- /.col -->
           </div>
         </div><!-- /.container-fluid -->
       </section>
@@ -124,6 +88,23 @@
           theme: 'bootstrap4'
         });
     });
+
+
+        $( "#addCustomer" ).on("click",function() {
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var mobile = $("#mobile").val();
+            var api_url = "https://smsplus.sslwireless.com/api/v3/send-sms?api_token=Smartpick-dfe06f43-a143-4b3a-91e3-f75e071166c5&sid=HIGHVOLNONBRAND&sms=test&msisdn=88"+mobile+"&csms_id=123456789";
+            // alert(email);
+            console.log(api_url);
+                $.ajax({
+                    url:api_url,
+                    type:"GET",
+                    success:function(data){
+                        console.log(data);
+                    }
+            });
+        });
 </script>
 
 @endsection
