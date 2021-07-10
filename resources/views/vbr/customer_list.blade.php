@@ -106,12 +106,14 @@
                      <tbody>
                       <?php $i=1; ?>
                       @foreach($customersDataList as $customer)
-                      <tr>
-                        <td>{{$i++}}</td>
-                        <td>{{$customer->name}}</td>
-                        <td>{{$customer->mobile}}</td>
-                        <td> {{ date('j F Y g:i A', strtotime($customer->created_at)) }} </td>
-                      </tr>
+                        @if ($customer->vbr_id == session('id'))
+                        <tr>
+                            <td>{{$i++}}</td>
+                            <td>{{$customer->name}}</td>
+                            <td>{{$customer->mobile}}</td>
+                            <td> {{ date('j F Y g:i A', strtotime($customer->created_at)) }} </td>
+                          </tr>
+                        @endif
                       @endforeach
                    </tbody>
                   </table>

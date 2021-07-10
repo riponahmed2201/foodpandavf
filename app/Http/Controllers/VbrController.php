@@ -57,7 +57,7 @@ class VbrController extends Controller
         // $form_entry_date = date('Y-m-d', strtotime($request->entry_date));
         $data['customers']=Customer::where('vbr_id',$vbr_id)->get();
 
-        $query = "select * from customers where vbr_id = $vbr_id";
+        $query = "select * from customers";
 
         if ($request->isMethod('post')) {
             $name = $request->name;
@@ -85,7 +85,7 @@ class VbrController extends Controller
             }
 
             $data['customersDataList'] = DB::select($query);
-            dd($data['customersDataList']);
+            // dd($data['customersDataList']);
             return view('vbr.customer_list',$data);
          }
 
