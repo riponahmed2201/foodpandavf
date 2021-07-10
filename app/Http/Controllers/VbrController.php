@@ -21,8 +21,9 @@ class VbrController extends Controller
 
     public function myCustomer(){
         Session::put('page','mycustomer');
-        $customers=Customer::all();
-        //dd($customers);
+        $vbr_id = session('id');
+        $customers=Customer::where('vbr_id',$vbr_id)->get();
+        // dd($customers);
     	return view('vbr.customer_list')->with(compact('customers'));
     }
 
