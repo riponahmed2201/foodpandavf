@@ -18,8 +18,8 @@ Route::middleware('admin')->group(function(){
 
     //vbr Delete & Approved & Inapproved
     Route::post('/delete/all/vbrs','VbrController@deleteAll');
-    Route::post('/activate/all/vbrs','Vbrcontroller@activateAll');
-    Route::post('/deactivate/all/vbrs','Vbrcontroller@deactivateAll');
+    Route::post('/activate/all/vbrs','VbrController@activateAll');
+    Route::post('/deactivate/all/vbrs','VbrController@deactivateAll');
 
     Route::get('/create/vbr','VbrController@createVbr')->name('create.vbr');
     Route::post('/add/vbr','VbrController@addVbr')->name('add.vbr');
