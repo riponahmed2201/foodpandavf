@@ -54,16 +54,18 @@ class VbrController extends Controller
 
         Session::put('page','mycustomer');
         $vbr_id = session('id');
+        // $form_entry_date = date('Y-m-d', strtotime($request->entry_date));
         $data['customers']=Customer::where('vbr_id',$vbr_id)->get();
 
         $query = "select * from customers";
 
         if ($request->isMethod('post')) {
             $name = $request->name;
-            // $email = $request->email;
+            $entry_date = $request->entry_date;
             $mobile = $request->mobile;
+            // dd($entry_date);
 
-            if($name == '-1' && $mobile == '-1'){
+            if($name == '-1' && $mobile == '-1' && $entry_date == '-1'){
             }else{
                 $query = $query. " where 1=1 ";
 
@@ -75,6 +77,16 @@ class VbrController extends Controller
                 if($mobile != '-1'){
                     $query = $query . " AND mobile = '".$mobile."'";
                 }
+
+                if($entry_date != '-1'){
+                    $query = $query . " AND created_at = '".$entry_date."'";
+                    // dd($query);
+                }
+
+                // if($entry_date != null){
+                //     $query = $query . " AND created_at = '".$entry_date."'";
+                //     // dd($query);
+                // }
             }
 
             $data['customersDataList'] = DB::select($query);

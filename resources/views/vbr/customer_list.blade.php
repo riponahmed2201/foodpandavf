@@ -66,7 +66,13 @@
                     <div class="form-group">
                       <label>&nbsp;&nbsp; Entry Date</label>
                       <div class="col-md-12 col-sm-12">
-                        <input type="date" id="from_date" class="form-control">
+                        <select name="entry_date" class="form-control">
+                            <option value="-1">----select entry date----</option>
+                            @foreach ($customers as $entry_date)
+                                <option value="{{ date('Y-m-d h:i:s A', strtotime($entry_date->created_at)) }}">{{ date('j F Y g:i A', strtotime($entry_date->created_at)) }}</option>
+                            @endforeach
+                          </select>
+                        {{-- <input type="date" name="entry_date" id="from_date" class="form-control"> --}}
                       </div>
                     </div>
                   </div>
