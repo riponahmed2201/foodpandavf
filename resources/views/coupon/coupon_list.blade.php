@@ -101,7 +101,7 @@
                 <div class="card-header bg-gray-light">
                   <h3 class="card-title">All Coupons</h3>
 
-                  <a class="float-right btn btn-success" style="margin-right: 1rem;" href="{{route('assign.coupon')}}"> <i class="fas fa-plus-circle mr-2"></i>Assign Coupon</a>
+                  <a class="float-right btn btn-success" style="margin-right: 1rem;" href="{{route('assign.coupon')}}" data-toggle="modal" data-target="#changeStatusModal"> <i class="fas fa-plus-circle mr-2"></i>Change Status</a>
 
                   <a class="float-right btn btn-success" style="margin-right: 1rem; color: white" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fas fa-plus-circle mr-2"></i>Upload Coupon</a>
 
@@ -136,6 +136,37 @@
                       </div>
                     </div>
                   </div>
+
+                          <!-- modal -->
+                <div class="modal fade" id="changeStatusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Upload CSV File with updated Status</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form action="{{route('coupon.excel.upload')}}" method="post" enctype="multipart/form-data">
+                              @csrf
+                              <div class="custom-file">
+                                <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                              </div>
+                              <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Upload</button>
+                              </div>
+                            </form>
+                          </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
                   <!-- modal -->
                 <div class="card-body">
                   <table id="example2" class="table table-bordered table-hover">

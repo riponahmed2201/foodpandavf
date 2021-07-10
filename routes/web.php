@@ -17,7 +17,7 @@ Route::middleware('admin')->group(function(){
    // Route::post('/vbr/update-status','VbrController@updateVbrStatus')->name('update.vbrStaus');
 
     //vbr Delete & Approved & Inapproved
-    Route::post('/delete/all/vbrs','Vbrcontroller@deleteAll');
+    Route::post('/delete/all/vbrs','VbrController@deleteAll');
     Route::post('/activate/all/vbrs','Vbrcontroller@activateAll');
     Route::post('/deactivate/all/vbrs','Vbrcontroller@deactivateAll');
 
