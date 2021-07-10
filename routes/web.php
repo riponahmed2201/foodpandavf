@@ -10,8 +10,8 @@ Route::post('/admin/login','AdminAuthController@login')->name('admin.login');
 
 Route::middleware('admin')->group(function(){
     Route::get('/dashboard','HomeController@index');
-    Route::get('/customer/list','CustomerController@customerlist')->name('customer.list');
-    Route::get('/coupon','CouponController@couponlist')->name('coupon.list');
+    Route::any('/customer/list','CustomerController@customerlist')->name('customer.list');
+    Route::any('/coupon','CouponController@couponlist')->name('coupon.list');
     Route::get('/assign/coupon','CouponController@assigncoupon')->name('assign.coupon');
     Route::get('/vbr/list','VbrController@vbrlist')->name('vbr.list');
    // Route::post('/vbr/update-status','VbrController@updateVbrStatus')->name('update.vbrStaus');

@@ -18,36 +18,31 @@
             </div>
 
             <div class="card-body">
-              <form role="form" action="#" method="get">
+              <form role="form" action="{{ route('customer.list') }}" method="POST">
+                @csrf
                 <div class="row">
                   <div class="col-sm-4">
                     <div class="form-group">
                       <label>&nbsp;&nbsp; Name</label>
                       <div class="col-md-12 col-sm-12">
-                        <select required="" class="form-control">
-                          <option value="">----select name----</option>
-                          <option value="">Imran</option>
-                          <option value="">Suborna</option>
-                          <option value="">Lisa</option>
-                          <option value="">Laboni</option>
-                          <option value="">Rita</option>
-                          <option value="">Keya</option>
-                          <option value="">Mila</option>
-                          <option value="">Lima</option>
-                          <option value="">Maya</option>
+                        <select name="name" required="" class="form-control">
+                          <option value="-1">----select name----</option>
+                          @foreach($allCustomerDataList as $custdata)
+                            <option value="{{ $custdata->name }}">{{ $custdata->name }}</option>
+                          @endforeach
                         </select>
                       </div>
                     </div>
                   </div>
                   <div class="col-sm-4">
                     <div class="form-group">
-                      <label>&nbsp;&nbsp; Location</label>
+                      <label>&nbsp;&nbsp; Coupon Code</label>
                       <div class="col-md-12 col-sm-12">
-                        <select required="" class="form-control">
-                          <option value="">----select location----</option>
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
+                        <select name="coupon_code" class="form-control">
+                          <option value="-1">----select coupon code----</option>
+                          @foreach($allCustomerDataList as $custdata)
+                            <option value="{{ $custdata->coupon_code }}">{{ $custdata->coupon_code }}</option>
+                          @endforeach
                         </select>
                       </div>
                     </div>
@@ -57,10 +52,10 @@
                     <div class="form-group">
                       <label>&nbsp;&nbsp; Status</label>
                       <div class="col-md-12 col-sm-12">
-                        <select required="" class="form-control">
-                          <option value="">----select status----</option>
-                          <option value="">Gift Pending</option>
-                          <option value="">Gift Taken</option>
+                        <select name="status" class="form-control">
+                          <option value="-1">----select status----</option>
+                          <option value="0">Gift Pending</option>
+                          <option value="1">Gift Taken</option>
                         </select>
                       </div>
                     </div>
@@ -70,9 +65,11 @@
                     <div class="form-group">
                       <label>&nbsp;&nbsp; Phone</label>
                       <div class="col-md-12 col-sm-12">
-                        <select required="" class="form-control">
-                          <option value="">----select phone----</option>
-                          <option value="">01711050777</option>
+                        <select name="mobile" class="form-control">
+                          <option value="-1">----select phone----</option>
+                          @foreach($allCustomerDataList as $custdata)
+                            <option value="{{ $custdata->mobile }}">{{ $custdata->mobile }}</option>
+                          @endforeach
                         </select>
                       </div>
                     </div>
@@ -82,19 +79,18 @@
                     <div class="form-group">
                       <label>&nbsp;&nbsp; Entry Date</label>
                       <div class="col-md-12 col-sm-12">
-                        <input type="date" id="from_date" required="" class="form-control">
+                        <input name="entry_date" type="date" id="from_date" class="form-control">
                       </div>
                     </div>
                   </div>
 
                 </div>
-              </form>
             </div>
 
             <div class="card-footer">
-              <a href=""><button type="submit" id="generate" class="btn btn-success">Generate</button></a>
+              <button type="submit" id="generate" class="btn btn-success">Generate</button>
             </div>
-
+        </form>
           </div>
 
           <div class="row">

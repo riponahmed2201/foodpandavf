@@ -18,15 +18,16 @@
           </div>
 
           <div class="card-body">
-            <form role="form" action="#" method="get">
+            <form role="form" action="{{ route('coupon.list') }}" method="post">
+                @csrf
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Coupon Code</label>
                     <div class="col-md-12 col-sm-12">
-                      <select required="" name="coupon_code" class="form-control">
-                        <option value="">----select Coupon Code----</option>
-                        @foreach ($couponList as $couponRow)
+                      <select name="coupon_code" class="form-control">
+                        <option value="-1">----select Coupon Code----</option>
+                        @foreach ($couponDataList as $couponRow)
                             <option value="{{ $couponRow->coupon }}">{{  $couponRow->coupon }}</option>
                         @endforeach
                       </select>
@@ -37,8 +38,8 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Status</label>
                     <div class="col-md-12 col-sm-12">
-                      <select required="" name="coupon_status" class="form-control">
-                        <option value="">----select location----</option>
+                      <select  name="coupon_status" class="form-control">
+                        <option value="-1">----select status----</option>
                         <option value="1">Used</option>
                         <option value="0">Not Used</option>
                       </select>
@@ -50,8 +51,8 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Assigned</label>
                     <div class="col-md-12 col-sm-12">
-                      <select required="" name="assigned" class="form-control">
-                        <option value="">----select Assigned----</option>
+                      <select name="assigned" class="form-control">
+                        <option value="-1 ">----select Assigned----</option>
                         <option value="">Imran</option>
                         <option value="">Jui</option>
                         <option value="">Hasan</option>
@@ -64,19 +65,17 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Date</label>
                     <div class="col-md-12 col-sm-12">
-                      <input name="date" type="date" required="" class="form-control">
+                      <input name="date" type="date" class="form-control">
                     </div>
                   </div>
                 </div>
 
               </div>
-            </form>
           </div>
-
-
           <div class="card-footer">
-            <a href=""><button type="submit" id="generate" class="btn btn-success">Generate</button></a>
+            <button type="submit" id="generate" class="btn btn-success">Generate</button>
           </div>
+        </form>
         </div>
 
         <div class="col-md-8 offset-2 mt-2">

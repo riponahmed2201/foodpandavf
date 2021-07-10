@@ -9,13 +9,40 @@ use App\Models\Coupon;
 use App\Imports\CouponsImport;
 use App\Models\Admin;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CouponController extends Controller
 {
-    public function couponList(){
+    public function couponList(Request $request){
         Session::put('page','couponList');
-        $couponList = Coupon::all();
-        return view('coupon.coupon_list',compact('couponList'));
+        $data['couponDataList'] = Coupon::all();
+
+         $query = "select * from coupons";
+
+         if ($request->isMethod('post')) {
+            $coupon_code = $request->coupon_code;
+            $coupon_status = $request->coupon_status;
+            if($coupon_code == '-1' && $coupon_status == '-1'){
+            }else{
+                $query = $query. " where 1=1 ";
+
+                if($coupon_code != '-1'){
+                  $query = $query . " AND coupon = '".$coupon_code."'";
+                 // dd($query);
+                }
+
+                if($coupon_status != '-1'){
+                    $query = $query . " AND status = '".$coupon_status."'";
+                }
+            }
+
+            $data['couponList'] = DB::select($query);
+            return view('coupon.coupon_list',$data);
+         }
+
+        // dd($couponList);
+        $data['couponList'] = DB::select($query);
+        return view('coupon.coupon_list',$data);
     }
 
     public function assignCoupon(){

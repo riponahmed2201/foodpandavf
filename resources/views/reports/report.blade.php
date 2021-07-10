@@ -64,7 +64,7 @@
 
 
           <div class="card-footer">
-            <a href="{{route('vbr.report')}}" target="blank" class="btn btn-success">Generate</a>
+            <a href="{{route('vbr.report')}}" target="blank" class="btn btn-success">Export Excel</a>
           </div>
 
 
