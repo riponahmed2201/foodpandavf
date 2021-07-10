@@ -15,6 +15,7 @@ class CustomerController extends Controller
         $customerData = DB::table('customers')
             ->join('admins', 'customers.vbr_id', '=', 'admins.id')
             ->select('customers.*', 'admins.name as admin_name')
+            ->orderBy('id','DESC')
             ->get();
         //dd($customerData);
         return view('customer.customer_list')->with(compact('customerData'));
