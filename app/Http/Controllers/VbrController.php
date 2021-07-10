@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\Hash;
 
 class VbrController extends Controller
 {
-    public function vbrList(){
+    public function vbrList(Request $request){
          Session::put('page','vbrList');
         $vbrData=Admin::where('role','vbr')->get();
+
+        $query = "select * from admins where role != admin";
+
         //dd($vbrData);
     	return view('vbr.vbe_list')->with(compact('vbrData'));
     }

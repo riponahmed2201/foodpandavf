@@ -21,8 +21,13 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+                     @if(Session::get('page')=="dashboard")
+                     <?php $active="active"; ?>
+                    @else
+                        <?php $active=""; ?>
+                    @endif
                 <li class="nav-item">
-                    <a href="{{url('dashboard')}}" class="nav-link {{ request()->is('dashboard') ? 'active' :''}}">
+                    <a href="{{url('dashboard')}}" class="nav-link {{$active}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
