@@ -13,7 +13,7 @@ Route::middleware('admin')->group(function(){
     Route::any('/customer/list','CustomerController@customerlist')->name('customer.list');
     Route::any('/coupon','CouponController@couponlist')->name('coupon.list');
     Route::get('/assign/coupon','CouponController@assigncoupon')->name('assign.coupon');
-    Route::get('/vbr/list','VbrController@vbrlist')->name('vbr.list');
+    Route::any('/vbr/list','VbrController@vbrlist')->name('vbr.list');
    // Route::post('/vbr/update-status','VbrController@updateVbrStatus')->name('update.vbrStaus');
 
     //vbr Delete & Approved & Inapproved

@@ -18,14 +18,15 @@
           </div>
 
           <div class="card-body">
-            <form role="form" action="#" method="get">
+            <form role="form" action="{{ route('vbr.list') }}" method="post">
+                @csrf
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Name</label>
                     <div class="col-md-12 col-sm-12">
-                      <select required="" class="form-control">
-                        <option value="">----select name----</option>
+                      <select name="name" class="form-control">
+                        <option value="-1">----select name----</option>
                         @foreach ($vbrData as $name)
                             <option value="{{ $name->name }}">{{  $name->name }}</option>
                         @endforeach
@@ -38,8 +39,8 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Email</label>
                     <div class="col-md-12 col-sm-12">
-                      <select required="" class="form-control">
-                        <option value="">----select email----</option>
+                      <select name="email" class="form-control">
+                        <option value="-1">----select email----</option>
                         @foreach ($vbrData as $email)
                             <option value="{{ $email->email }}">{{  $email->email }}</option>
                         @endforeach
@@ -52,8 +53,8 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Phone</label>
                     <div class="col-md-12 col-sm-12">
-                      <select required="" class="form-control">
-                        <option value="">----select phone----</option>
+                      <select name="mobile" class="form-control">
+                        <option value="-1">----select phone----</option>
                         @foreach ($vbrData as $phone)
                             <option value="{{ $phone->mobile }}">{{  $phone->mobile }}</option>
                         @endforeach
@@ -61,16 +62,12 @@
                     </div>
                   </div>
                 </div>
-
               </div>
-            </form>
           </div>
-
-
           <div class="card-footer">
-            <a href=""><button type="submit" id="generate" class="btn btn-success">Generate</button></a>
+            <button type="submit" id="generate" class="btn btn-success">Generate</button>
           </div>
-
+        </form>
 
         </div>
         <div class="row">
@@ -96,20 +93,22 @@
                     </thead>
                     <tbody>
                       <?php $i=1; ?>
-                    @foreach($vbrData as $vbrData)
-                    <tr>
-                      <td><input type="checkbox" name="vbrs_ids[]" value="{{$vbrData->id}}"></td>
-                      <td>{{$vbrData->name}}</td>
-                      <td>{{$vbrData->email}}</td>
-                      <td>{{$vbrData->mobile}}</td>
-                      <td>
-                        @if ($vbrData->status==1)
-                        <button class="btn btn-success btn-xs">Approved</button>
-                        @else
-                        <button class="btn btn-danger btn-xs">Not Approved</button>
+                    @foreach($vbrDataList as $vbrData)
+                        @if ($vbrData->role == 'vbr')
+                            <tr>
+                            <td><input type="checkbox" name="vbrs_ids[]" value="{{$vbrData->id}}"></td>
+                            <td>{{$vbrData->name}}</td>
+                            <td>{{$vbrData->email}}</td>
+                            <td>{{$vbrData->mobile}}</td>
+                            <td>
+                                @if ($vbrData->status==1)
+                                <button class="btn btn-success btn-xs">Approved</button>
+                                @else
+                                <button class="btn btn-danger btn-xs">Not Approved</button>
+                                @endif
+                            </td>
+                            </tr>
                         @endif
-                      </td>
-                    </tr>
                     @endforeach
                   </tbody>
                 </table>

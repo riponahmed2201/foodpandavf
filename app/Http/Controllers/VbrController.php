@@ -14,12 +14,40 @@ class VbrController extends Controller
 {
     public function vbrList(Request $request){
          Session::put('page','vbrList');
-        $vbrData=Admin::where('role','vbr')->get();
 
-        $query = "select * from admins where role != admin";
+        $data['vbrData']=Admin::where('role','vbr')->get();
 
-        //dd($vbrData);
-    	return view('vbr.vbe_list')->with(compact('vbrData'));
+        $query = "select * from admins";
+
+        if ($request->isMethod('post')) {
+            $name = $request->name;
+            $email = $request->email;
+            $mobile = $request->mobile;
+
+            if($name == '-1' && $email == '-1' && $mobile == '-1'){
+            }else{
+                $query = $query. " where 1=1 ";
+
+                if($name != '-1'){
+                  $query = $query . " AND name = '".$name."'";
+                 // dd($query);
+                }
+
+                if($email != '-1'){
+                    $query = $query . " AND email = '".$email."'";
+                   // dd($query);
+                  }
+
+                if($mobile != '-1'){
+                    $query = $query . " AND mobile = '".$mobile."'";
+                }
+            }
+
+            $data['vbrDataList'] = DB::select($query);
+            return view('vbr.vbe_list',$data);
+         }
+        $data['vbrDataList'] = DB::select($query);
+    	return view('vbr.vbe_list',$data);
     }
 
     public function myCustomer(){
