@@ -18,23 +18,19 @@
           </div>
 
           <div class="card-body">
-            <form role="form" action="#" method="get">
+            <form role="form" action="{{ route('exportToExcelReport') }}" method="get">
+                @csrf
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group">
                     <label>&nbsp;&nbsp;VBR Name</label>
                     <div class="col-md-12 col-sm-12">
-                      <select required="" class="form-control">
+                      <select name="name" class="form-control">
                         <option value="">----select VBR name----</option>
-                        <option value="">Imran</option>
-                        <option value="">Suborna</option>
-                        <option value="">Lisa</option>
-                        <option value="">Laboni</option>
-                        <option value="">Rita</option>
-                        <option value="">Keya</option>
-                        <option value="">Mila</option>
-                        <option value="">Lima</option>
-                        <option value="">Maya</option>
+                        <option value="all">All</option>
+                        @foreach ($vbrName as $name)
+                            <option value="{{ $name->id }}">{{ $name->name }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -44,7 +40,7 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; From Date</label>
                     <div class="col-md-12 col-sm-12">
-                      <input type="date" required="" class="form-control">
+                      <input type="date" class="form-control">
                     </div>
                   </div>
                 </div>
@@ -53,21 +49,20 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; To Date</label>
                     <div class="col-md-12 col-sm-12">
-                      <input type="date" required="" class="form-control">
+                      <input type="date" class="form-control">
                     </div>
                   </div>
                 </div>
 
               </div>
-            </form>
+
           </div>
-
-
           <div class="card-footer">
-            <a href="{{route('vbr.report')}}" target="blank" class="btn btn-success">Export Excel</a>
+            <button type="submit" class="btn btn-success">Export Excel</button>
+            {{-- <a href="{{route('vbr.report')}}" target="blank" class="btn btn-success">Export Excel</a> --}}
           </div>
 
-
+        </form>
         </div>
 
       </div><!-- /.container-fluid -->
