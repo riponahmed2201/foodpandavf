@@ -202,7 +202,7 @@ class VbrController extends Controller
     }
 
     public function addVbr(Request $request){
-        //dd($request->all());
+      //  dd($request->all());
         $this->validate($request,[
             'name'=>'required',
             'email'=>'required|email|unique:customers',
@@ -214,7 +214,7 @@ class VbrController extends Controller
          $vbr->name=$request->name;
          $vbr->email=$request->email;
          $vbr->mobile=$request->mobile;
-         $vbr->password=Hash::make('123456');
+         $vbr->password=Hash::make($request->password);
          $vbr->status=1;
          $vbr->role='vbr';
          $vbr->status=0;
