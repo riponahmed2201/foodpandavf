@@ -75,8 +75,8 @@
               <div class="card">
                 <div class="card-header bg-gray-light">
                   <button class="btn btn-danger btn-sm float-sm-left" id="delete_all" style="margin:5px;"><i class="fa fa-trash"></i> Delete</button>&nbsp
-                <button class="btn btn-success btn-sm float-sm-left" id="active_all" style="margin:5px;"><i class="fa fa-check"></i> Approved?</button>
-                <button class="btn btn-warning btn-sm float-sm-left" id="deactivate_all" style="margin:5px;"><i class="fa fa-exclamation-circle"></i> Inpproved?</button>
+                <button class="btn btn-success btn-sm float-sm-left" id="active_all" style="margin:5px;"><i class="fa fa-check"></i> Active</button>
+                <button class="btn btn-warning btn-sm float-sm-left" id="deactivate_all" style="margin:5px;"><i class="fa fa-exclamation-circle"></i> Inactive</button>
                   <a class="float-right btn btn-success" href="{{route('create.vbr')}}"> <i class="fas fa-plus-circle mr-2"></i>Create VBR </a>
                 </div>
                 <!-- /.card-header -->
@@ -102,9 +102,9 @@
                             <td>{{$vbrData->mobile}}</td>
                             <td>
                                 @if ($vbrData->status==1)
-                                <button class="btn btn-success btn-xs">Approved</button>
+                                <button class="btn btn-success btn-xs">Active</button>
                                 @else
-                                <button class="btn btn-danger btn-xs">Not Approved</button>
+                                <button class="btn btn-danger btn-xs">Inactive</button>
                                 @endif
                             </td>
                             </tr>

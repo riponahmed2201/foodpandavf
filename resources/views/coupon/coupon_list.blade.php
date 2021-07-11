@@ -49,10 +49,10 @@
 
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>&nbsp;&nbsp; Assigned</label>
+                    <label>&nbsp;&nbsp; VBR Name</label>
                     <div class="col-md-12 col-sm-12">
                       <select name="assigned" class="form-control">
-                        <option value="-1 ">----select Assigned----</option>
+                        <option value="-1 ">----select vbr name----</option>
                         <option value="">Imran</option>
                         <option value="">Jui</option>
                         <option value="">Hasan</option>

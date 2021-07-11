@@ -18,7 +18,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>147</h3>
+                <h3>{{ $myCustomer ? $myCustomer : 0 }}</h3>
 
                 <p>My Customers</p>
               </div>
@@ -48,7 +48,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>4</h3>
+                <h3>{{ $todayCustomerCount ? $todayCustomerCount : 0 }}</h3>
 
                 <p>Todays Customer</p>
               </div>

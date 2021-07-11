@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\VBRsExport;
 use App\Models\Admin;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -31,5 +32,24 @@ class ReportController extends Controller
             $all_vbr_name = $request->name;
         }
         return Excel::download(new VBRsExport($all_vbr_name), 'report.csv');
+      }
+
+      public function printVBRReportExcel(Request $request)
+      {
+        $from_date = date('Y-m-d 16:07:14', strtotime($request->from_date));
+        $to_date = date('Y-m-d 18:42:15', strtotime($request->to_date));
+        $vbrName = $request->vbr_name;
+        // SELECT * FROM `admins` WHERE created_at BETWEEN '2021-07-08 16:07:14' AND '2021-07-08 18:42:15' AND role = 'vbr'
+
+        if ($request->vbr_name == 'all') {
+            $report =  DB::select("select * from admins where created_at BETWEEN '".$from_date."' AND '".$to_date."' AND role='vbr'");
+        }else {
+            $report =  DB::select("select * from admins where created_at BETWEEN '".$from_date."' AND '".$to_date."' AND id='".$vbrName."' AND role='vbr'");
+        }
+
+        //dd($report);
+
+        return response()->json($report);
+
       }
 }
