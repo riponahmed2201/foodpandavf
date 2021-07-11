@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Http;
 
 class VbrController extends Controller
 {
@@ -120,26 +121,49 @@ class VbrController extends Controller
             // dd($unUsedCoupon);
 
             if ($unUsedCoupon->coupon) {
-                if ($request->mobile) {
-                    $customer_sms_body = "Dear customer, Your FoodPanda unique voucher coupon is ".$unUsedCoupon->coupon." created. This coupon is applicable for new user.";
-                    $test = urlencode($customer_sms_body);
-                    $api_url = "https://smsplus.sslwireless.com/api/v3/send-sms?api_token=Smartpick-dfe06f43-a143-4b3a-91e3-f75e071166c5&sid=HIGHVOLNONBRAND&sms=".$test."&msisdn=88".$request->mobile."&csms_id=123456789";
+               if ($request->mobile && $vbrMobileNumber->mobile) {
 
-                    // dd($request->all());
-                    // $api = "http://107.173.27.10/test?amount=" . $amount . "&c_id=" . $campaign_id;
+                   // customer message info
+                    $customer_sms_body = "প্রিয় গ্রাহক, আপনার ফুডপান্ডা ইউনিক Voucher কুপন ".$unUsedCoupon->coupon." তৈরি করা হয়েছে। এই কুপনটি শুধু নতুন User-দের জন্য প্রযোজ্য।";
+                    $customer_mobile = $request->mobile;
 
-                    $output = json_decode(file_get_contents($api_url));
+                    $customer_sms_sent_response = $this->sms_sent($customer_mobile,$customer_sms_body);
+                    //dd( $customer_sms_sent_response);
 
-                    $vbr_sms_body = "VBR ID XXXXX, Congratulations you have successfully created a customer number ".$request->mobile." with a coupon.";
-                    $vbr_test = urlencode($vbr_sms_body);
-                    $vbr_api_url = "https://smsplus.sslwireless.com/api/v3/send-sms?api_token=Smartpick-dfe06f43-a143-4b3a-91e3-f75e071166c5&sid=HIGHVOLNONBRAND&sms=".$vbr_test."&msisdn=88".$vbrMobileNumber->mobile."&csms_id=123456789";
-                    $vbr_output = json_decode(file_get_contents($vbr_api_url));
+                    //vbr message info
+                    $vbr_sms_body = "VBR ID XXXXX, অভিনন্দন আপনি সফলভাবে কাস্টমার নম্বর ".$customer_mobile."  একটি কুপন তৈরি করেছেন।";
+                    $vbr_mobile = $vbrMobileNumber->mobile;
 
-                    //dd($output);
-                }
+                    $vbr_sms_sent_response = $this->sms_sent($vbr_mobile, $vbr_sms_body);
+                   // dd($vbr_sms_sent_response);
+               }
             }else {
                 return redirect()->back()->with('success','Something Error Found, Please contact with admin section.');
             }
+
+
+            // if ($unUsedCoupon->coupon) {
+            //     if ($request->mobile) {
+
+            //         $customer_sms_body = "Dear customer, Your FoodPanda unique voucher coupon is ".$unUsedCoupon->coupon." created. This coupon is applicable for new user.";
+            //         $test = urlencode($customer_sms_body);
+            //         $api_url = "https://smsplus.sslwireless.com/api/v3/send-sms?api_token=Smartpick-dfe06f43-a143-4b3a-91e3-f75e071166c5&sid=HIGHVOLNONBRAND&sms=".$test."&msisdn=88".$request->mobile."&csms_id=123456789";
+
+            //         // dd($request->all());
+            //         // $api = "http://107.173.27.10/test?amount=" . $amount . "&c_id=" . $campaign_id;
+
+            //         $output = json_decode(file_get_contents($api_url));
+
+            //         $vbr_sms_body = "VBR ID XXXXX, Congratulations you have successfully created a customer number ".$request->mobile." with a coupon.";
+            //         $vbr_test = urlencode($vbr_sms_body);
+            //         $vbr_api_url = "https://smsplus.sslwireless.com/api/v3/send-sms?api_token=Smartpick-dfe06f43-a143-4b3a-91e3-f75e071166c5&sid=HIGHVOLNONBRAND&sms=".$vbr_test."&msisdn=88".$vbrMobileNumber->mobile."&csms_id=123456789";
+            //         $vbr_output = json_decode(file_get_contents($vbr_api_url));
+
+            //         //dd($output);
+            //     }
+            // }else {
+            //     return redirect()->back()->with('success','Something Error Found, Please contact with admin section.');
+            // }
 
             $customer = new Customer;
             $customer->name = $request->name;
@@ -224,4 +248,16 @@ class VbrController extends Controller
          return redirect()->back()->with('success','Vbr Created Successfully!');
     }
 
+   public function sms_sent($receiver, $body){
+
+        $response = Http::post('https://smsplus.sslwireless.com/api/v3/send-sms', [
+            'api_token' => 'Smartpick-dfe06f43-a143-4b3a-91e3-f75e071166c5',
+            'sid' => 'HIGHVOLNONBRAND',
+            'sms' => $body,
+            'msisdn' => $receiver,
+            'csms_id' => '123456789'
+        ]);
+
+        return $response;
+    }
 }
