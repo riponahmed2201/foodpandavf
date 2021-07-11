@@ -98,10 +98,14 @@
     <script>
 
         $("#generate").on("click",function() {
+            $('#generate').attr('disabled', true);
+            $('#generate').addClass('loading-bar');
 
             var vbr_name = $("#vbr_name").val();
             var from_date = $("#from_date").val();
             var to_date = $("#to_date").val();
+
+            $("#excelReport tbody").empty();
 
             $.ajax({
                 url:"{{ url('/print-vbr-report-excel') }}",
@@ -109,7 +113,10 @@
                 dataType:"json",
                 data:{vbr_name:vbr_name, from_date:from_date, to_date:to_date},
                 success:function(data){
+                    $('#generate').attr('disabled', false);
+                    $('#generate').removeClass('loading-bar');
                     //console.log(data);
+                    $("#excelReport tbody").empty();
                     if (data) {
                         var i = 1;
                         $.each(data,function(index,element){
