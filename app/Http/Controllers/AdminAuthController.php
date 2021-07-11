@@ -42,7 +42,12 @@ class AdminAuthController extends Controller
                 if ($auth->role =='admin') {
                     return redirect('/dashboard');
                 }elseif ($auth->role =='vbr') {
-                    return redirect('/vbr/dashboard');
+                    if ($auth->status == 1) {
+                        return redirect('/vbr/dashboard');
+                    }else {
+                        return redirect('/')->with('failed','Your are not active.');
+                    }
+
                 }else{
                     return redirect('/');
                 }

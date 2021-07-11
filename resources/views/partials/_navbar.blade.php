@@ -42,9 +42,6 @@
         <form id="admin-logout" action="{{route('admin.logout')}}" method="post" style="display: none">
           @csrf
         </form>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#"><i class="fas fa-users mr-2"></i> Profile Profile
-        </a>
         </div>
       </li>
     </ul>

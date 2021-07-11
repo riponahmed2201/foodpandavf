@@ -16,23 +16,32 @@ class CouponController extends Controller
     public function couponList(Request $request){
         Session::put('page','couponList');
         $data['couponDataList'] = Coupon::all();
+        $data['vbrDataList'] = Admin::where('role', 'vbr')->get();
 
-         $query = "select * from coupons";
+         //$query = "select * from coupons";
+         $query = "select coupons.*, admins.name as vbr_name from coupons left join admins on coupons.vbr_id=admins.id";
+
 
          if ($request->isMethod('post')) {
             $coupon_code = $request->coupon_code;
             $coupon_status = $request->coupon_status;
-            if($coupon_code == '-1' && $coupon_status == '-1'){
+            $vbr_name = $request->vbr_name;
+
+            if($coupon_code == '-1' && $coupon_status == '-1' && $vbr_name == '-1'){
             }else{
                 $query = $query. " where 1=1 ";
 
                 if($coupon_code != '-1'){
-                  $query = $query . " AND coupon = '".$coupon_code."'";
+                  $query = $query . " AND coupons.coupon = '".$coupon_code."'";
                  // dd($query);
                 }
 
                 if($coupon_status != '-1'){
-                    $query = $query . " AND status = '".$coupon_status."'";
+                    $query = $query . " AND coupons.status = '".$coupon_status."'";
+                }
+
+                if($vbr_name != '-1'){
+                    $query = $query . " AND admins.name = '".$vbr_name."'";
                 }
             }
 

@@ -40,7 +40,7 @@
                     <div class="col-md-12 col-sm-12">
                       <select  name="coupon_status" class="form-control">
                         <option value="-1">----select status----</option>
-                        <option value="1">Used</option>
+                        <option value="2">Used</option>
                         <option value="0">Not Used</option>
                       </select>
                     </div>
@@ -51,11 +51,11 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; VBR Name</label>
                     <div class="col-md-12 col-sm-12">
-                      <select name="assigned" class="form-control">
+                      <select name="vbr_name" class="form-control">
                         <option value="-1 ">----select vbr name----</option>
-                        <option value="">Imran</option>
-                        <option value="">Jui</option>
-                        <option value="">Hasan</option>
+                        @foreach ($vbrDataList as $vbr)
+                            <option value="{{ $vbr->name }}">{{  $vbr->name }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -192,7 +192,7 @@
                                     @endif
 
                                  </td>
-                                <td>{{ $coupon->name }}</td>
+                                <td>{{ $coupon->vbr_name }}</td>
                                 <td>
                                     {{ date('j F Y g:i A', strtotime($coupon->created_at)) }}
                                 </td>

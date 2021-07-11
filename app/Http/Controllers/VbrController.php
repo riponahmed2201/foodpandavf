@@ -141,20 +141,21 @@ class VbrController extends Controller
                 return redirect()->back()->with('success','Something Error Found, Please contact with admin section.');
             }
 
-             $customer = new Customer;
-             $customer->name = $request->name;
-             $customer->vbr_id = $auth;
-             $customer->email = $request->email;
-             $customer->mobile = $request->mobile;
-             $customer->date_of_birth = $request->date_of_birth;
-             $customer->location = $request->location;
-             $customer->coupon_code = $unUsedCoupon->coupon;
-             $customer->status=0;
-             $customer->save();
+            $customer = new Customer;
+            $customer->name = $request->name;
+            $customer->vbr_id = $auth;
+            $customer->email = $request->email;
+            $customer->mobile = $request->mobile;
+            $customer->date_of_birth = $request->date_of_birth;
+            $customer->location = $request->location;
+            $customer->coupon_code = $unUsedCoupon->coupon;
+            $customer->status=0;
+            $customer->save();
 
             Coupon::where('coupon',$unUsedCoupon->coupon)
             ->update([
-                'status' => 2,
+                'vbr_id' => session('id'),
+                'status' => 2
             ]);
 
              return redirect()->back()->with('success','Customer Created Successfully!');
