@@ -40,8 +40,9 @@
                     <div class="col-md-12 col-sm-12">
                       <select  name="coupon_status" class="form-control">
                         <option value="-1">----select status----</option>
-                        <option value="2">Used</option>
+                        <option value="1">Used</option>
                         <option value="0">Not Used</option>
+                        <option value="2">Taken</option>
                       </select>
                     </div>
                   </div>
@@ -187,6 +188,8 @@
                                 <td>
                                     @if ($coupon->status == 0)
                                         <span class="badge badge-danger">Not Used</span>
+                                    @elseif ($coupon->status == 2)
+                                        <span class="badge badge-warning">Taken</span>
                                     @else
                                         <span class="badge badge-sucess">Used</span>
                                     @endif
