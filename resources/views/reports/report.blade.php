@@ -67,8 +67,11 @@
               <div class="card">
                 <div class="card-header bg-gray-light">
                     <h3 class="card-title">VBR Report Details</h3>
-                    <a href="#" class="btn btn-success float-right" onclick="exportToExcel('excelReport','excelReport')">Export Excel</a>
+                    <a href="#" class="btn btn-success float-right" onclick="fnExcelReport();">Export Excel</a>
+
+                    {{-- <a href="#" class="btn btn-success float-right" onclick="exportToExcel('excelReport','excelReport')">Export Excel</a> --}}
                 </div>
+                <iframe id="txtArea1" style="display:none"></iframe>
                 <!-- /.card-header -->
                 <div class="card-body">
                   <table id="excelReport" class="table table-bordered table-hover">
@@ -131,42 +134,40 @@
 
 
 <script>
-    function exportToExcel(tableID, filename){
 
-    var vbr_name = $("#vbr_name").val();
-    var from_date = $("#from_date").val();
-    var to_date = $("#to_date").val();
+    function fnExcelReport()
+    {
+        var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
+        var textRange; var j=0;
+        tab = document.getElementById('excelReport'); // id of table
 
-    var downloadLink;
-    var dataType = 'application/vnd.ms-excel';
-    var header = "<h2 style='text-align:center;'>Name : Md. Ripon Mia</h2><h2 style='text-align:center;'>Staff Code: 1111</h2>";
-    var tableSelect = document.getElementById(tableID);
-    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-    // console.log(header);
-    // Specify file name
-    filename = filename?filename+'('+ vbr_name + '-' + from_date + ' ' + to_date +').xls':'excel_data.xls';
+        for(j = 0 ; j < tab.rows.length ; j++)
+        {
+            tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
 
-    // Create download link element
-    downloadLink = document.createElement("a");
+        tab_text=tab_text+"</table>";
+        tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+        tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+        tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
 
-    document.body.appendChild(downloadLink);
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
 
-    if(navigator.msSaveOrOpenBlob){
-        var blob = new Blob(['\ufeff', tableHTML], {
-            type: dataType
-        });
-        navigator.msSaveOrOpenBlob( blob, filename);
-    }else{
-        // Create a link to the file
-        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html","replace");
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
+        }
+        else                 //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
 
-        // Setting the file name
-        downloadLink.download = filename;
-
-        //triggering the function
-        downloadLink.click();
+        return (sa);
     }
-}
   </script>
 
 @endsection
