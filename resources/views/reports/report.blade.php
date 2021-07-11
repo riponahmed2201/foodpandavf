@@ -67,7 +67,7 @@
               <div class="card">
                 <div class="card-header bg-gray-light">
                     <h3 class="card-title">VBR Report Details</h3>
-                    <a href="#" class="btn btn-success float-right" onclick="fnExcelReport();">Export Excel</a>
+                    <a href="javascript:void(0)" class="btn btn-success float-right" onclick="fnExcelReport();">Export Excel</a>
 
                     {{-- <a href="#" class="btn btn-success float-right" onclick="exportToExcel('excelReport','excelReport')">Export Excel</a> --}}
                 </div>
