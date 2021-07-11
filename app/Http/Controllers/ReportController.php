@@ -36,8 +36,8 @@ class ReportController extends Controller
 
       public function printVBRReportExcel(Request $request)
       {
-        $from_date = date('Y-m-d 16:07:14', strtotime($request->from_date));
-        $to_date = date('Y-m-d 18:42:15', strtotime($request->to_date));
+        $from_date = date('Y-m-d', strtotime($request->from_date));
+        $to_date = date('Y-m-d', strtotime($request->to_date));
         $vbrName = $request->vbr_name;
         // SELECT * FROM `admins` WHERE created_at BETWEEN '2021-07-08 16:07:14' AND '2021-07-08 18:42:15' AND role = 'vbr'
 

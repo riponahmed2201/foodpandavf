@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Admin;
 use App\Models\Coupon;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -216,6 +217,7 @@ class VbrController extends Controller
          $vbr->status=1;
          $vbr->role='vbr';
          $vbr->status=0;
+         $vbr->created_at = Carbon::now();
 
          $vbr->save();
          return redirect()->back()->with('success','Vbr Created Successfully!');
