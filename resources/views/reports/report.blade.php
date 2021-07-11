@@ -81,6 +81,7 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone</th>
+                      <th>VBR Name</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -123,7 +124,7 @@
                     if (data) {
                         var i = 1;
                         $.each(data,function(index,element){
-                            $("#excelReport").append("<tr><td>" + i++ + "</td><td>" + element.name + "</td><td>" + element.email + "</td><td>" + element.mobile + "</td></tr>")
+                            $("#excelReport").append("<tr><td>" + i++ + "</td><td>" + element.name + "</td><td>" + element.email + "</td><td>" + element.mobile + "</td><td>" + element.vbr_name +"</td></tr>")
                         })
                     }
                 }
