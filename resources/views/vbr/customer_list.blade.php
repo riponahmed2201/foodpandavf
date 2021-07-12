@@ -12,8 +12,8 @@
 @section('container')
  <section class="content">
         <div class="container-fluid">
-          <div class="card card-secondary">
-            <div class="card-header">
+          <div class="card">
+            <div class="card-header" style="background: #D70F64; color: white">
               <h3 class="card-title">Filter</h3>
             </div>
 
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="card-footer">
-              <button type="submit" id="generate" class="btn" style="background: #e83e8c; color: white">Generate</button>
+              <button type="submit" id="generate" class="btn" style="background: #D70F64; color: white">Generate</button>
             </div>
         </form>
           </div>
@@ -76,7 +76,7 @@
               <div class="card">
                 <div class="card-header bg-gray-light">
                   <h3 class="card-title">Customer List</h3>
-                  <a href="{{route('create.customer')}}" class="float-right btn" style="margin-right: 1rem; background: #e83e8c; color: white"> <i class="fas fa-plus-circle mr-2"></i>Generate Coupon for Customer</a>
+                  <a href="{{route('create.customer')}}" class="float-right btn" style="margin-right: 1rem; background: #D70F64; color: white"> <i class="fas fa-plus-circle mr-2"></i>Generate Coupon for Customer</a>
 
                 </div>
                 <!-- /.card-header -->

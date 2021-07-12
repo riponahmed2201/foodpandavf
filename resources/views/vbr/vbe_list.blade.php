@@ -12,8 +12,8 @@
 @section('container')
  <section class="content">
       <div class="container-fluid">
-        <div class="card card-secondary">
-          <div class="card-header">
+        <div class="card">
+          <div class="card-header" style="background: #D70F64; color: white">
             <h3 class="card-title">Filter</h3>
           </div>
 
@@ -65,7 +65,7 @@
               </div>
           </div>
           <div class="card-footer">
-            <button type="submit" id="generate" class="btn" style="background: #e83e8c; color: white">Generate</button>
+            <button type="submit" id="generate" class="btn" style="background: #D70F64; color: white">Generate</button>
           </div>
         </form>
 
@@ -77,7 +77,7 @@
                   <button class="btn btn-danger btn-sm float-sm-left" id="delete_all" style="margin:5px;"><i class="fa fa-trash"></i> Delete</button>&nbsp
                 <button class="btn btn-sm btn-success float-sm-left" id="active_all" style="margin:5px;"><i class="fa fa-check"></i> Active</button>
                 <button class="btn btn-warning btn-sm float-sm-left" id="deactivate_all" style="margin:5px;"><i class="fa fa-exclamation-circle"></i> Inactive</button>
-                  <a class="float-right btn" style="background: #e83e8c; color: white" href="{{route('create.vbr')}}"> <i class="fas fa-plus-circle mr-2"></i>Create VBR </a>
+                  <a class="float-right btn" style="background: #D70F64; color: white" href="{{route('create.vbr')}}"> <i class="fas fa-plus-circle mr-2"></i>Create VBR </a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

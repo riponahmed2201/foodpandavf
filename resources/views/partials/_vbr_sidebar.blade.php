@@ -12,7 +12,7 @@
                 <img src="{{asset('images/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="admin Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{session('role')}}</a>
+                <a href="javascript:void(0)" text-uppercase class="d-block">{{session('role')}}</a>
             </div>
         </div>
 

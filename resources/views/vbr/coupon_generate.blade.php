@@ -15,13 +15,13 @@
           <div class="row">
             <div class="col-12">
               <div class="card">
-                <div class="card-header bg-gray-light">
+                <div class="card-header" style="background: #D70F64; color: white">
                   <h3 class="card-title">Customer Create</h3>
-                  <a href="{{route('mycustomer')}}" class="float-right btn" style="margin-right: 1rem; background: #e83e8c; color: white"> <i class="fas fa-list mr-2"></i> Customer List</a>
+                  <a href="{{route('mycustomer')}}" class="float-right btn" style="margin-right: 1rem; background: #D70F64; color: white"> <i class="fas fa-list mr-2"></i> Customer List</a>
                 </div>
                 <div class="col-md-8 offset-2 mt-2">
                   @if ($message = Session::get('success'))
-                    <div class="alert alert-block text-center" style="background: #e83e8c; color: white">
+                    <div class="alert alert-block text-center" style="background: #D70F64; color: white">
                       <button type="button" class="close" data-dismiss="alert">×</button>
                       <strong class="text-center">{{ $message }}</strong>
                     </div>
@@ -69,29 +69,11 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                      <button type="submit" class="btn float-right" style="background: #e83e8c; color: white">Submit</button>
+                      <button type="submit" class="btn float-right" style="background: #D70F64; color: white">Submit</button>
                       </div>
                 </div>
               </form>
             </div>
-
-             <!-- modal -->
-            <!--  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-body">
-                      <h3>Customer registered successfully!</h3>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-              <!-- modal -->
-
-
-            <!-- /.col -->
           </div>
         </div><!-- /.container-fluid -->
       </section>

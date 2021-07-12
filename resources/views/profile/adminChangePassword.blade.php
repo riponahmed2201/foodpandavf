@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-md-8 offset-2 mt-2">
                     @if ($message = Session::get('success'))
-                        <div class="alert alert-block text-center" style="background: #e83e8c; color: white">
+                        <div class="alert alert-block text-center" style="background: #D70F64; color: white">
                             <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong class="text-center">{{ $message }}</strong>
                         </div>
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" style="background: #e83e8c; color: white" class="btn float-right">Submit</button>
+                            <button type="submit" style="background: #D70F64; color: white" class="btn float-right">Submit</button>
                         </div>
                     </div>
                 </form>

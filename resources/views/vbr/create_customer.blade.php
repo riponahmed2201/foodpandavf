@@ -15,9 +15,9 @@
           <div class="row">
             <div class="col-12">
               <div class="card">
-                <div class="card-header bg-gray-light">
+                <div class="card-header" style="background: #D70F64; color: white">
                   <h3 class="card-title">Customer Create</h3>
-                  <a href="{{route('mycustomer')}}" class="float-right btn" style="margin-right: 1rem; background: #e83e8c; color: white"> <i class="fas fa-list mr-2"></i> Customer List</a>
+                  <a href="{{route('mycustomer')}}" class="float-right btn" style="margin-right: 1rem; background: #D70F64; color: white"> <i class="fas fa-list mr-2"></i> Customer List</a>
                 </div>
                 <div class="col-md-8 offset-2 mt-2">
                   @if ($message = Session::get('success'))
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                      <button  type="sutmit" class="btn float-right" style="background: #e83e8c; color: white">Submit</button>
+                      <button  type="sutmit" class="btn float-right" style="background: #D70F64; color: white">Submit</button>
                       </div>
                 </div>
               </form>

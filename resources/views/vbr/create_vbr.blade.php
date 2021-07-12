@@ -12,15 +12,15 @@
 @section('container')
  <section class="content">
       <div class="container-fluid">
-        <div class="card card-default">
-          <div class="card-header">
+        <div class="card">
+          <div class="card-header" style="background: #D70F64; color: white">
             <h3 class="card-title">Create VBR</h3>
 
-            <a class="float-right btn" style="background: #e83e8c; color: white" href="{{route('vbr.list')}}"> <i class="fas fa-list mr-2"></i>VBR List </a>
+            <a class="float-right btn" style="background: #D70F64; color: white" href="{{route('vbr.list')}}"> <i class="fas fa-list mr-2"></i>VBR List </a>
           </div>
           <div class="col-md-8 offset-2 mt-2">
               @if ($message = Session::get('success'))
-                <div class="alert alert-block text-center" style="background: #e83e8c; color: white">
+                <div class="alert alert-block text-center" style="background: #D70F64; color: white">
                   <button type="button" class="close" data-dismiss="alert">×</button>
                   <strong class="text-center">{{ $message }}</strong>
                 </div>
@@ -75,7 +75,7 @@
                 </div>
               </div>
               <div class="card-footer">
-                 <button type="submit" class="btn float-right" style="background: #e83e8c; color: white">Submit</button>
+                 <button type="submit" class="btn float-right" style="background: #D70F64; color: white">Submit</button>
               </div>
             </div>
           </form>

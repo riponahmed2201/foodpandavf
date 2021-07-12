@@ -18,8 +18,8 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
+<body class="hold-transition login-page" style="background: #D70F64">
+<div class="login-box" >
     <div class="login-logo">
         <a href="#">
             <img  src="{{ asset('logo/food_panda_logo.jpg') }}" style="width: 200px; height: 70px">
