@@ -116,7 +116,7 @@ class VbrController extends Controller
             ]);
 
             $auth = session('id');
-            $vbrMobileNumber =DB::table('admins')->select('mobile')->where('id',$auth)->first();
+            $vbrMobileNumber =DB::table('admins')->where('id',$auth)->first();
             $unUsedCoupon = DB::table('coupons')->select('coupon')->where('status',0)->first();
             // dd($unUsedCoupon);
 
