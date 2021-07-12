@@ -10,6 +10,11 @@ Route::post('/admin/login','AdminAuthController@login')->name('admin.login');
 
 Route::middleware('admin')->group(function(){
     Route::get('/dashboard','HomeController@index');
+
+    //password change
+    Route::get('/admin/password/change','PasswordChangeController@adminPasswordChangeView')->name('adminPasswordChangeView');
+    Route::post('/admin/password/change/check','PasswordChangeController@adminPasswordChangeCheck')->name('adminPasswordChangeCheck');
+
     Route::any('/customer/list','CustomerController@customerlist')->name('customer.list');
     Route::any('/coupon','CouponController@couponlist')->name('coupon.list');
     Route::get('/assign/coupon','CouponController@assigncoupon')->name('assign.coupon');
@@ -43,6 +48,10 @@ Route::middleware('vbr')->group(function(){
     Route::get('/generate/coupon','VbrController@coupongenerate')->name('coupon.generate');
     Route::get('/create/customer','VbrController@createCustomer')->name('create.customer');
     Route::post('/add/customer','VbrController@addCustomer')->name('add.customer');
+
+    //password change
+    Route::get('/vbr/password/change','PasswordChangeController@vbrPasswordChangeView')->name('vbrPasswordChangeView');
+    Route::post('/vbr/password/change/check','PasswordChangeController@vbrPasswordChangeCheck')->name('vbrPasswordChangeCheck');
 
 });
 

@@ -20,9 +20,14 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
+    <div class="login-logo">
+        <a href="#">
+            <img  src="{{ asset('logo/food_panda_logo.jpg') }}" style="width: 200px; height: 70px">
+        </a>
+    </div>
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="vbr_login.html" class="h1"><b>Login</b></a>
+      <a href="{{url('/')}}" class="h1"><b>Login</b></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>

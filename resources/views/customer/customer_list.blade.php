@@ -85,10 +85,8 @@
                   </div>
 
                 </div>
-            </div>
-
             <div class="card-footer">
-              <button type="submit" id="generate" class="btn btn-success">Generate</button>
+              <button type="submit" id="generate" class="btn" style="background: #e83e8c; color: white">Generate</button>
             </div>
         </form>
           </div>

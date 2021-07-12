@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-light-purple elevation-4">
+<aside class="main-sidebar sidebar-light-pink elevation-4">
     <!-- Brand Logo -->
     <a href="javascript:void(0)" class="brand-link">
         <img src="{{asset('logo/food_panda_logo.jpg')}}" alt="logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -34,6 +34,22 @@
                         </p>
                     </a>
                 </li>
+
+                @if(Session::get('page')=="adminPasswordChange")
+                    <?php $active="active"; ?>
+                @else
+                    <?php $active=""; ?>
+                @endif
+
+                <li class="nav-item">
+                    <a href="{{url('/admin/password/change')}}" class="nav-link {{$active}}">
+                        <i class="nav-icon fas fa-user-cog" style="color: #00008B"></i>
+                        <p>
+                            Change Password
+                        </p>
+                    </a>
+                </li>
+
                 @if(Session::get('page')=="customerList")
                     <?php $active="active"; ?>
                 @else
@@ -41,7 +57,7 @@
                 @endif
                 <li class="nav-item">
                     <a href="{{route('customer.list')}}" class="nav-link {{$active}}">
-                        <i class="nav-icon fas fa-user text-green"></i>
+                        <i class="nav-icon fas fa-user" style="color: #9ACD32"></i>
                         <p>Customer List</p>
                     </a>
                 </li>
@@ -52,7 +68,7 @@
                 @endif
                 <li class="nav-item">
                     <a href="{{route('coupon.list')}}" class="nav-link {{$active}}">
-                        <i class="nav-icon fas fa-list text-green"></i>
+                        <i class="nav-icon fas fa-list" style="color: #7B68EE"></i>
                         <p>Coupon</p>
                     </a>
                 </li>
@@ -74,7 +90,7 @@
                 @endif
                 <li class="nav-item">
                     <a href="{{route('report')}}" class="nav-link {{$active}}">
-                        <i class="nav-icon fas fa-list text-green"></i>
+                        <i class="nav-icon fas fa-book" style="color: #000080"></i>
                         <p> Reports</p>
                     </a>
                 </li>

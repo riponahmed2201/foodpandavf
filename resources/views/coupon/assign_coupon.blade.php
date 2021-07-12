@@ -51,7 +51,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <button type="submit" class="btn btn-success">Assigned</button>
+                <button type="submit" class="btn" style="background: #e83e8c; color: white">Assigned</button>
             </div>
           </form>
         </div>

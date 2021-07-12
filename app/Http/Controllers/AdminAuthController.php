@@ -58,13 +58,13 @@ class AdminAuthController extends Controller
                 ->withErrors($this->errors);
         	}
         }else{
-            return back()->with('failed','No Account For This Email');
+            return back()->with('failed','No account for this email');
         }
     }
 
     public function logout(Request $request)
     {
-       $request->session()->flush();
+        $request->session()->flush();
         return redirect('/');
     }
 }

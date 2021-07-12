@@ -74,14 +74,14 @@
               </div>
           </div>
           <div class="card-footer">
-            <button type="submit" id="generate" class="btn btn-success">Generate</button>
+            <button type="submit" id="generate" class="btn" style="background: #e83e8c; color: white">Generate</button>
           </div>
         </form>
         </div>
 
         <div class="col-md-8 offset-2 mt-2">
             @if ($message = Session::get('success'))
-              <div class="alert alert-success alert-block text-center">
+              <div class="alert alert-block text-center" style="background: #e83e8c; color: white">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong class="text-center">{{ $message }}</strong>
               </div>
@@ -101,9 +101,9 @@
                 <div class="card-header bg-gray-light">
                   <h3 class="card-title">All Coupons</h3>
 
-                  <a class="float-right btn btn-success" style="margin-right: 1rem;" href="{{route('assign.coupon')}}" data-toggle="modal" data-target="#changeStatusModal"> <i class="fas fa-plus-circle mr-2"></i>Change Status</a>
+                  <a class="float-right btn" style="margin-right: 1rem; background: #e83e8c; color: white" href="{{route('assign.coupon')}}" data-toggle="modal" data-target="#changeStatusModal"> <i class="fas fa-plus-circle mr-2"></i>Change Status</a>
 
-                  <a class="float-right btn btn-success" style="margin-right: 1rem; color: white" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fas fa-plus-circle mr-2"></i>Upload Coupon</a>
+                  <a class="float-right btn" style="margin-right: 1rem; background: #e83e8c; color: white" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fas fa-plus-circle mr-2"></i>Upload Coupon</a>
 
                 </div>
                 <!-- /.card-header -->
@@ -128,7 +128,7 @@
                               </div>
                               <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success">Upload</button>
+                                <button type="submit" class="btn" style="background: #e83e8c; color: white">Upload</button>
                               </div>
                             </form>
                           </div>
@@ -157,7 +157,7 @@
                               </div>
                               <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success">Upload</button>
+                                <button type="submit" class="btn" style="background: #e83e8c; color: white">Upload</button>
                               </div>
                             </form>
                           </div>

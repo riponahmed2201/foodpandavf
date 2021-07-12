@@ -49,19 +49,6 @@
                     </div>
                   </div>
 
-                  {{-- <div class="col-sm-4">
-                    <div class="form-group">
-                      <label>&nbsp;&nbsp; Status</label>
-                      <div class="col-md-12 col-sm-12">
-                        <select name="status" class="form-control">
-                          <option value="-1">----select status----</option>
-                          <option value="1">Approved</option>
-                          <option value="0">Inapproved</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div> --}}
-
                   <div class="col-sm-4">
                     <div class="form-group">
                       <label>&nbsp;&nbsp; Entry Date</label>
@@ -79,7 +66,7 @@
                 </div>
             </div>
             <div class="card-footer">
-              <button type="submit" id="generate" class="btn btn-success">Generate</button>
+              <button type="submit" id="generate" class="btn" style="background: #e83e8c; color: white">Generate</button>
             </div>
         </form>
           </div>
@@ -89,7 +76,7 @@
               <div class="card">
                 <div class="card-header bg-gray-light">
                   <h3 class="card-title">Customer List</h3>
-                  <a href="{{route('create.customer')}}" class="float-right btn btn-success" style="margin-right: 1rem;"> <i class="fas fa-plus-circle mr-2"></i>Generate Coupon for Customer</a>
+                  <a href="{{route('create.customer')}}" class="float-right btn" style="margin-right: 1rem; background: #e83e8c; color: white"> <i class="fas fa-plus-circle mr-2"></i>Generate Coupon for Customer</a>
 
                 </div>
                 <!-- /.card-header -->

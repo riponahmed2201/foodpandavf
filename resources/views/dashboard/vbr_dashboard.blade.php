@@ -78,7 +78,7 @@
         <div class="row">
           <div class="card">
             <div class="card-header bg-gray-light">
-              <a href="{{route('create.customer')}}" class="float-right btn btn-success" style="margin-right: 1rem;"> <i class="fas fa-plus-circle mr-2"></i>Generate Coupon for Customer</a>
+              <a href="{{route('create.customer')}}" class="float-right btn" style="margin-right: 1rem; background: #e83e8c; color: white"> <i class="fas fa-plus-circle mr-2"></i>Generate Coupon for Customer</a>
             </div>
         </div>
       </div>

@@ -120,25 +120,25 @@ class VbrController extends Controller
             $unUsedCoupon = DB::table('coupons')->select('coupon')->where('status',0)->first();
             // dd($unUsedCoupon);
 
-            if ($unUsedCoupon->coupon) {
+            if ($unUsedCoupon->coupon && $unUsedCoupon->coupon == 0) {
                if ($request->mobile && $vbrMobileNumber->mobile) {
 
                    // customer message info
-                    $customer_sms_body = "প্রিয় গ্রাহক, আপনার ফুডপান্ডা ইউনিক Voucher কুপন ".$unUsedCoupon->coupon." তৈরি করা হয়েছে। এই কুপনটি শুধু নতুন User-দের জন্য প্রযোজ্য।";
+                    $customer_sms_body = "প্রিয় গ্রাহক, আপনার foodpanda ইউনিক Voucher কুপন ".$unUsedCoupon->coupon." তৈরি করা হয়েছে। এই কুপনটি শুধু নতুন User-দের জন্য প্রযোজ্য।";
                     $customer_mobile = $request->mobile;
 
                     $customer_sms_sent_response = $this->sms_sent($customer_mobile,$customer_sms_body);
                     //dd( $customer_sms_sent_response);
 
                     //vbr message info
-                    $vbr_sms_body = "VBR ID XXXXX, অভিনন্দন আপনি সফলভাবে কাস্টমার নম্বর ".$customer_mobile."  একটি কুপন তৈরি করেছেন।";
+                    $vbr_sms_body = "VBR Email ".$vbrMobileNumber->email.", অভিনন্দন আপনি সফলভাবে কাস্টমার নম্বর ".$customer_mobile."  একটি কুপন তৈরি করেছেন।";
                     $vbr_mobile = $vbrMobileNumber->mobile;
 
                     $vbr_sms_sent_response = $this->sms_sent($vbr_mobile, $vbr_sms_body);
                    // dd($vbr_sms_sent_response);
                }
             }else {
-                return redirect()->back()->with('success','Something Error Found, Please contact with admin section.');
+                return redirect()->back()->with('success','No coupon available for customer.');
             }
 
 

@@ -56,7 +56,7 @@
             </form>
           </div>
           <div class="card-footer">
-            <button id="generate" class="btn btn-success">Generate</button>
+            <button id="generate" class="btn" style="background: #e83e8c; color: white">Generate</button>
           </div>
 
 
@@ -67,7 +67,7 @@
               <div class="card">
                 <div class="card-header bg-gray-light">
                     <h3 class="card-title">VBR Report Details</h3>
-                    <a href="javascript:void(0)" class="btn btn-success float-right" onclick="fnExcelReport();">Export Excel</a>
+                    <a href="javascript:void(0)" class="btn float-right" style="background: #e83e8c; color: white" onclick="fnExcelReport();">Export Excel</a>
 
                     {{-- <a href="#" class="btn btn-success float-right" onclick="exportToExcel('excelReport','excelReport')">Export Excel</a> --}}
                 </div>

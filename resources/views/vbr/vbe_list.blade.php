@@ -65,7 +65,7 @@
               </div>
           </div>
           <div class="card-footer">
-            <button type="submit" id="generate" class="btn btn-success">Generate</button>
+            <button type="submit" id="generate" class="btn" style="background: #e83e8c; color: white">Generate</button>
           </div>
         </form>
 
@@ -75,9 +75,9 @@
               <div class="card">
                 <div class="card-header bg-gray-light">
                   <button class="btn btn-danger btn-sm float-sm-left" id="delete_all" style="margin:5px;"><i class="fa fa-trash"></i> Delete</button>&nbsp
-                <button class="btn btn-success btn-sm float-sm-left" id="active_all" style="margin:5px;"><i class="fa fa-check"></i> Active</button>
+                <button class="btn btn-sm float-sm-left" id="active_all" style="margin:5px; background: #e83e8c; color: white"><i class="fa fa-check"></i> Active</button>
                 <button class="btn btn-warning btn-sm float-sm-left" id="deactivate_all" style="margin:5px;"><i class="fa fa-exclamation-circle"></i> Inactive</button>
-                  <a class="float-right btn btn-success" href="{{route('create.vbr')}}"> <i class="fas fa-plus-circle mr-2"></i>Create VBR </a>
+                  <a class="float-right btn" style="background: #e83e8c; color: white" href="{{route('create.vbr')}}"> <i class="fas fa-plus-circle mr-2"></i>Create VBR </a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -317,5 +317,17 @@ $(function () {
           )
       }
   });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#example2').DataTable( {
+            "info": true,
+            "autoWidth": false,
+            scrollX:'50vh',
+            scrollY:'50vh',
+            scrollCollapse: true,
+        } );
+    } );
 </script>
 @endsection
