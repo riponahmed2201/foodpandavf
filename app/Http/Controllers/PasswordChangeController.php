@@ -29,17 +29,13 @@ class PasswordChangeController extends Controller
 
         if($request->password == $request->password_confirmation){
             if (Hash::check($request->old_password, $auth_info->password)) {
-                if(Hash::check($request->password,$auth_info->password)){
                     $users = Admin::find($auth_id);
                     $users->password = Hash::make($request->password);
                     $users->save();
                     Session::flash('success','You have successfully changed the password');
                     $request->session()->flush();
                     return redirect('/');
-                }else{
-                    Session::flash('failed','New password cannot be the same as old password');
-                    return redirect()->back();
-                }
+
             }else{
                 Session::flash('failed','Old password does not matched!');
                 return redirect()->back();
@@ -57,17 +53,12 @@ class PasswordChangeController extends Controller
 
         if($request->password == $request->password_confirmation){
             if (Hash::check($request->old_password, $auth_info->password)) {
-                if(Hash::check($request->password,$auth_info->password)){
                     $users = Admin::find($auth_id);
                     $users->password = Hash::make($request->password);
                     $users->save();
                     Session::flash('success','You have successfully changed the password');
                     $request->session()->flush();
                     return redirect('/');
-                }else{
-                    Session::flash('failed','New password cannot be the same as old password');
-                    return redirect()->back();
-                }
             }else{
                 Session::flash('failed','Old password does not matched!');
                 return redirect()->back();
