@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-light-pink elevation-4">
     <!-- Brand Logo -->
     <a href="javascript:void(0)">
-        <img style="width: 250px; height: 56px;" src="{{asset('logo/food_panda_logo.jpg')}}" alt="logo">
+        <img style="width: 250px; height: 150px;" src="{{asset('logo/food_panda_logo.jpg')}}" alt="logo">
 {{--        <span class="brand-text font-weight-light">&nbsp; VBR</span>--}}
     </a>
     <!-- Sidebar -->
