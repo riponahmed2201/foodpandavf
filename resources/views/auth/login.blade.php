@@ -22,7 +22,7 @@
 <div class="login-box" >
     <div class="login-logo">
         <a href="#">
-            <img  src="{{ asset('logo/food_panda_logo.jpg') }}" style="width: 200px; height: 70px">
+            <img  src="{{ asset('logo/food_panda_logo.jpg') }}" style="width: 200px; height: 80px">
         </a>
     </div>
   <div class="card card-outline card-primary">
