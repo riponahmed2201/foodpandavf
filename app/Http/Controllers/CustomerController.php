@@ -19,20 +19,16 @@ class CustomerController extends Controller
 
         $data['allCustomerDataList'] = Customer::all();
 
-        // $data['customerData'] = DB::table('customers')
-        //     ->join('admins', 'customers.vbr_id', '=', 'admins.id')
-        //     ->select('customers.*', 'admins.name as admin_name')
-        //     ->orderBy('id','DESC')
-        //     ->get();
-
             if ($request->isMethod('post')) {
                 $name = $request->name;
                 $status = $request->status;
                 $mobile = $request->mobile;
                 $coupon_code = $request->coupon_code;
-               // $entry_date = date('Y-m-d', strtotime($request->entry_date));
 
-                if($name == '-1' && $status == '-1' && $mobile == '-1' && $coupon_code == '-1'){
+                $entry_date = date('Y-m-d', strtotime($request->entry_date));
+               // dd($request_entry_date);
+
+                if($name == '-1' && $status == '-1' && $mobile == '-1' && $coupon_code == '-1' && $entry_date == ' '){
                 }else{
                     $query = $query. " where 1=1 ";
 
@@ -53,14 +49,15 @@ class CustomerController extends Controller
                         $query = $query . " AND customers.coupon_code = '".$coupon_code."'";
                     }
 
-                    // if($entry_date != ''){
-                    //     $query = $query . " AND customers.created_at = '".$entry_date."'";
-                    //     // dd($query);
-                    // }
+                     if($entry_date){
+//                         $query = $query . " AND customers.created_at = '".$entry_date."'";
+                         $query = $query . " AND customers.created_at like '%".$entry_date."%'";
+                         // dd($query);
+                     }
                 }
 
                 $data['customerData'] = DB::select($query);
-                // dd($data['customerData']);
+                 //dd($data['customerData']);
 
                 return view('customer.customer_list',$data);
             }

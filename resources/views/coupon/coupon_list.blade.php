@@ -66,7 +66,7 @@
                   <div class="form-group">
                     <label>&nbsp;&nbsp; Date</label>
                     <div class="col-md-12 col-sm-12">
-                      <input name="date" type="date" class="form-control">
+                      <input type="date" name="entry_date"  type="date" class="form-control">
                     </div>
                   </div>
                 </div>

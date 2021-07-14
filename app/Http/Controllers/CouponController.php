@@ -27,7 +27,9 @@ class CouponController extends Controller
             $coupon_status = $request->coupon_status;
             $vbr_name = $request->vbr_name;
 
-            if($coupon_code == '-1' && $coupon_status == '-1' && $vbr_name == '-1'){
+            $entry_date = date('Y-m-d', strtotime($request->entry_date));
+
+            if($coupon_code == '-1' && $coupon_status == '-1' && $vbr_name == '-1' && $entry_date == ' '){
             }else{
                 $query = $query. " where 1=1 ";
 
@@ -43,9 +45,14 @@ class CouponController extends Controller
                 if($vbr_name != '-1'){
                     $query = $query . " AND admins.name = '".$vbr_name."'";
                 }
+                if($entry_date){
+                    $query = $query . " AND coupons.created_at like '%".$entry_date."%'";
+                    // dd($query);
+                }
             }
 
             $data['couponList'] = DB::select($query);
+            //dd($data['couponList']);
             return view('coupon.coupon_list',$data);
          }
 
