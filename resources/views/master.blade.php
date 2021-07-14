@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>@yield('title')</title>
-  @include('partials._css')
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>@yield('title')</title>
+    @include('partials._css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
