@@ -7,7 +7,7 @@
 @section('stylesheet')
     <!-- <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@8.10.0/dist/sweetalert2.css" rel="stylesheet"> -->
-{{--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--}}
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 @endsection
 
 @section('container')
