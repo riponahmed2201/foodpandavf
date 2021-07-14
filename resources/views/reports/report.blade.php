@@ -113,7 +113,7 @@
             $("#excelReport tbody").empty();
 
             $.ajax({
-                url:"{{ url('/print-vbr-report-excel') }}",
+                url:"{{ url('/print-vbr-report-excel/') }}",
                 type:"GET",
                 dataType:"json",
                 data:{vbr_name:vbr_name, from_date:from_date, to_date:to_date},

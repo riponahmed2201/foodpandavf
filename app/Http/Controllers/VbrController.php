@@ -226,7 +226,7 @@ class VbrController extends Controller
     }
 
     public function addVbr(Request $request){
-      //  dd($request->all());
+       //dd(Hash::make($request->password));
         $this->validate($request,[
             'name'=>'required',
             'email'=>'required|email|unique:customers',
