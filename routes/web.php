@@ -29,7 +29,7 @@ Route::middleware('admin')->group(function(){
     Route::get('/create/vbr','VbrController@createVbr')->name('create.vbr');
     Route::post('/add/vbr','VbrController@addVbr')->name('add.vbr');
     Route::get('/report','ReportController@report')->name('report');
-    Route::get('/print-vbr-report-excel/','ReportController@printVBRReportExcel')->name('printVBRReportExcel');
+    Route::get('/print-vbr-report-excel','ReportController@printVBRReportExcel')->name('printVBRReportExcel');
     Route::get('/vbr/report','ReportController@vbrreport')->name('vbr.report');
     Route::get('/export-excel-report','ReportController@exportToExcelReport')->name('exportToExcelReport');
 
