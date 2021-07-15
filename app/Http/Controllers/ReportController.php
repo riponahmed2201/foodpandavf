@@ -36,13 +36,16 @@ class ReportController extends Controller
 
       public function printVBRReportExcel(Request $request)
       {
-        $from_date = date('Y-m-d', strtotime($request->from_date));
-        $to_date = date('Y-m-d', strtotime($request->to_date));
+        $from_date = date('Y-m-d 00:00:01', strtotime($request->from_date));
+        $to_date = date('Y-m-d 23:59:59', strtotime($request->to_date));
+
         $vbrName = $request->vbr_name;
         // SELECT customers.*, admins.name as vbr_name FROM `customers`
         // INNER JOIN admins on customers.vbr_id=admins.id
         // WHERE customers.created_at BETWEEN '2021-07-08' AND '2021-07-10' AND admins.id = 2
+
         if ($request->vbr_name == 'all') {
+
             $report =  DB::select("SELECT customers.*, admins.name as vbr_name FROM `customers`
                                     INNER JOIN admins on customers.vbr_id=admins.id
                                     WHERE customers.created_at BETWEEN '".$from_date."' AND '".$to_date."' AND admins.role = 'vbr'");
@@ -51,10 +54,7 @@ class ReportController extends Controller
                                     INNER JOIN admins on customers.vbr_id=admins.id
                                     WHERE customers.created_at BETWEEN '".$from_date."' AND '".$to_date."' AND admins.id = '".$vbrName."'");
             }
-
         //dd($report);
-
         return response()->json($report);
-
       }
 }
