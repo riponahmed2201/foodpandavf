@@ -35,6 +35,7 @@ Route::middleware('admin')->group(function(){
 
     //excel upload
     Route::post('/coupon-excel-upload','CouponController@couponBatchUpload')->name('coupon.excel.upload');
+    Route::post('/change-coupon-status-batch-upload','CouponController@changeCouponStatusBatchUpload')->name('changeCouponStatusBatchUpload');
 
 });
 

@@ -40,15 +40,16 @@ class CouponController extends Controller
 
                 if($coupon_status != '-1'){
                     $query = $query . " AND coupons.status = '".$coupon_status."'";
+//                     dd($query);
                 }
 
                 if($vbr_name != '-1'){
                     $query = $query . " AND admins.name = '".$vbr_name."'";
                 }
-                if($entry_date){
-                    $query = $query . " AND coupons.created_at like '%".$entry_date."%'";
-                    // dd($query);
-                }
+//                if(!empty($entry_date)){
+//                    $query = $query . " AND coupons.created_at like '%".$entry_date."%'";
+//                    // dd($query);
+//                }
             }
 
             $data['couponList'] = DB::select($query);
@@ -102,4 +103,36 @@ class CouponController extends Controller
 
     }
 }
+
+    public function changeCouponStatusBatchUpload(Request $request)
+    {
+        $upload = $request->file('file');
+        $filename = $_FILES['file']['name'];
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        $accept_files = ["csv", "xlsx"];
+        if(!in_array($ext, $accept_files)) {
+            return redirect()->back()
+            ->with('error', 'Invalid file extension. permitted file is .csv & .xlsx');
+        }
+        // get the file
+        $upload = $request->file('file');
+        $filePath = $upload->getRealPath();
+
+        if($ext == "xlsx" || $ext == "csv") {
+        $result = Excel::toArray(new CouponsImport, $upload);
+
+            for($i =0; $i<count($result[0]) ;$i++){
+
+                  if ($result[0][$i] && $result[0][$i][0] != null) {
+//                    dd($result[0][$i][0]);
+                    Coupon::where('coupon',$result[0][$i][0])->update([
+                        'status' => 1
+                    ]);
+                  }
+                }
+
+        return back()->with('success','Coupon status updated successfully!!');
+
+        }
+    }
 }
