@@ -229,8 +229,8 @@ class VbrController extends Controller
        //dd(Hash::make($request->password));
         $this->validate($request,[
             'name'=>'required',
-            'email'=>'required|email|unique:customers',
-            'mobile'=>'required',
+            'email'=>'required|email|unique:admins',
+            'mobile'=>'required|numeric|min:11|unique:admins',
             'password'=>'required',
             ]);
 
