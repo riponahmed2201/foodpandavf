@@ -152,8 +152,8 @@
                             <form action="{{route('changeCouponStatusBatchUpload')}}" method="post" enctype="multipart/form-data">
                               @csrf
                               <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                <input type="file" name="file" class="form-control-file" id="inputGroupFile01">
+                                <!-- <label class="custom-file-label" for="inputGroupFile01">Choose file</label> -->
                               </div>
                               <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
