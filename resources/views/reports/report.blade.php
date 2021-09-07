@@ -67,9 +67,11 @@
               <div class="card">
                 <div class="card-header bg-gray-light">
                     <h3 class="card-title">VBR Report Details</h3>
-                    <a href="javascript:void(0)" class="btn float-right" style="background: #D70F64; color: white" onclick="fnExcelReport();">Export Excel</a>
+                    <a href="javascript:void(0)" class="btn float-right" style="background: #D70F64; color: white" id="btnExport" onclick="exportReportToExcel(this)">Export Excel</a>
 
-                    {{-- <a href="#" class="btn btn-success float-right" onclick="exportToExcel('excelReport','excelReport')">Export Excel</a> --}}
+        <!-- <a href="#" class="btn btn-success float-right" onclick="tableToExcel()">Export Excel</a> -->
+        <!-- <button id="btnExport" onclick="exportReportToExcel(this)">EXPORT REPORT</button> -->
+
                 </div>
                 <iframe id="txtArea1" style="display:none"></iframe>
                 <!-- /.card-header -->
@@ -135,41 +137,58 @@
     </script>
 
 
+<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+
+
 <script>
 
-    function fnExcelReport()
-    {
-        var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
-        var textRange; var j=0;
-        tab = document.getElementById('excelReport'); // id of table
+// function fnExcelReport()
+//     {
+//         var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
+//         var textRange; var j=0;
+//         tab = document.getElementById('excelReport'); // id of table
 
-        for(j = 0 ; j < tab.rows.length ; j++)
-        {
-            tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
-            //tab_text=tab_text+"</tr>";
+//         for(j = 0 ; j < tab.rows.length ; j++)
+//         {
+//             tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+//             //tab_text=tab_text+"</tr>";
+//         }
+
+//         tab_text=tab_text+"</table>";
+//         tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+//         tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+//         tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+//         var ua = window.navigator.userAgent;
+//         var msie = ua.indexOf("MSIE ");
+
+//         if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+//         {
+//             txtArea1.document.open("txt/html","replace");
+//             txtArea1.document.write(tab_text);
+//             txtArea1.document.close();
+//             txtArea1.focus();
+//             sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
+//         }
+//         else                 //other browser not tested on IE 11
+//             sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+//         return (sa);
+//     }
+  </script>
+
+  <script>
+
+    function exportReportToExcel() {
+      let table = document.getElementsByTagName("table"); // you can use document.getElementById('tableId') as well by providing id to the table tag
+      TableToExcel.convert(table[0], { // html code may contain multiple tables so here we are refering to 1st table tag
+        name: `export.xlsx`, // fileName you could use any name
+        sheet: {
+          name: 'Sheet 1' // sheetName
         }
-
-        tab_text=tab_text+"</table>";
-        tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
-        tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
-        tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
-
-        var ua = window.navigator.userAgent;
-        var msie = ua.indexOf("MSIE ");
-
-        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
-        {
-            txtArea1.document.open("txt/html","replace");
-            txtArea1.document.write(tab_text);
-            txtArea1.document.close();
-            txtArea1.focus();
-            sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
-        }
-        else                 //other browser not tested on IE 11
-            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
-
-        return (sa);
+      });
     }
+
   </script>
 
 @endsection
