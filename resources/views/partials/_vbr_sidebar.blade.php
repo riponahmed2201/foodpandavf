@@ -67,7 +67,7 @@
                     <?php $active=""; ?>
                 @endif
                 <li class="nav-item">
-                    <a href="{{route('coupon.generate')}}" class="nav-link {{$active}}">
+                    <a href="{{route('create.customer')}}" class="nav-link {{$active}}">
                         <i class="nav-icon fas fa-plus-circle" style="color: #4169E1"></i>
                         <p>Generate Coupon</p>
                     </a>

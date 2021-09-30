@@ -103,7 +103,8 @@ class VbrController extends Controller
     public function couponGenerate()
     {
         Session::put('page', 'couponGenerate');
-        return view('vbr.coupon_generate');
+        return view('vbr.create_customer');
+        // return view('vbr.coupon_generate');
     }
 
     public function createCustomer()
