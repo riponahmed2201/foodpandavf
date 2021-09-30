@@ -50,6 +50,9 @@ Route::middleware('vbr')->group(function(){
     Route::get('/create/customer','VbrController@createCustomer')->name('create.customer');
     Route::post('/add/customer','VbrController@addCustomer')->name('add.customer');
 
+    // send OTP to customer
+    Route::post('/send-otp-customer','VbrController@sendOTPToCustomer')->name('sendOTPToCustomer');
+
     //password change
     Route::get('/vbr/password/change','PasswordChangeController@vbrPasswordChangeView')->name('vbrPasswordChangeView');
     Route::post('/vbr/password/change/check','PasswordChangeController@vbrPasswordChangeCheck')->name('vbrPasswordChangeCheck');
