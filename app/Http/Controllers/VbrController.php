@@ -265,7 +265,7 @@ class VbrController extends Controller
     {
         $fourRandomDigit = rand(1000, 9999);
         $customerMobile = $request->mobile;
-        $body_sms = $fourRandomDigit . " is your one time foodpanda voucher activation code.";
+        $body_sms = $fourRandomDigit . " is your foodpanda voucher activation code.";
 
         $customer_sms_sent_response = $this->sms_sent($customerMobile, $body_sms);
         if ($customer_sms_sent_response) {
