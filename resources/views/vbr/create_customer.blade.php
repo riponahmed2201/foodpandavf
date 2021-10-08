@@ -103,6 +103,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
 
     <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
         $(document).ready(function() {
 
             $.ajaxSetup({
@@ -133,14 +140,25 @@
                     mobile: mobile
                 },
                 success: function(data) {
-
-                    check_otp_four_digit = data;
-                    // console.log(check_otp_four_digit)
-
-                    $("#sendOTPButton").hide();
-                    $("#check_otp_div").show();
-                    $("#formSubmitButton").show();
-                    $("#mobile").attr("disabled", true);
+                    if (data == 'mobileExists') {
+                        Toast.fire({
+                            type: 'error',
+                            title: 'Mobile number already exists.'
+                        });
+                    } else {
+                        check_otp_four_digit = data;
+                        // console.log(check_otp_four_digit)
+                        $("#sendOTPButton").hide();
+                        $("#check_otp_div").show();
+                        $("#formSubmitButton").show();
+                        $("#mobile").attr("disabled", true);
+                    }
+                },
+                error: function(data) {
+                    Toast.fire({
+                        type: 'error',
+                        title: 'Something went wrong. Please check all field.'
+                    });
                 }
             });
         });
@@ -165,10 +183,18 @@
                     },
                     success: (data) => {
                         if (data == 'coupon') {
-                            alert("No coupon available for customer.");
+                            // alert("No coupon available for customer.");
+                            Toast.fire({
+                                type: 'error',
+                                title: 'No coupon available for customer.'
+                            });
                         }
                         console.log(data)
-                        alert("Customer added successfully.");
+                        // alert("Customer added successfully.");
+                        Toast.fire({
+                            type: 'success',
+                            title: 'Customer added successfully.'
+                        });
 
                         $("#name").val('');
                         $("#email").val('');
@@ -180,11 +206,19 @@
                         $("#mobile").attr("disabled", false);
                     },
                     error: function(data) {
-                        alert("Operation Failed.");
+                        // alert("Operation Failed.");
+                        Toast.fire({
+                            type: 'error',
+                            title: 'Operation Failed.'
+                        });
                     }
                 });
             } else {
-                alert("Customer OTP and your OTP do not match.");
+                // alert("Customer OTP and your OTP do not match.");
+                Toast.fire({
+                    type: 'error',
+                    title: 'Customer OTP and your OTP do not match.'
+                });
             }
         });
 

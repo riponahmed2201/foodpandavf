@@ -263,6 +263,12 @@ class VbrController extends Controller
 
     public function sendOTPToCustomer(Request $request)
     {
+        $vbrMobileNumber = Customer::where('mobile', $request->mobile)->first();
+
+        if ($vbrMobileNumber) {
+            return response()->json("mobileExists");
+        }
+
         $fourRandomDigit = rand(1000, 9999);
         $customerMobile = $request->mobile;
         $body_sms = $fourRandomDigit . " is your foodpanda voucher activation code.";
