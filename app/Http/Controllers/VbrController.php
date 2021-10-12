@@ -139,10 +139,10 @@ class VbrController extends Controller
                 //dd( $customer_sms_sent_response);
 
                 //vbr message info
-                // $vbr_sms_body = "VBR Email " . $vbrMobileNumber->email . ", অভিনন্দন আপনি সফলভাবে কাস্টমার নম্বর " . $customer_mobile . "  একটি কুপন তৈরি করেছেন।";
-                // $vbr_mobile = $vbrMobileNumber->mobile;
+                $vbr_sms_body = "VBR Email " . $vbrMobileNumber->email . ", অভিনন্দন আপনি সফলভাবে কাস্টমার নম্বর " . $customer_mobile . "  একটি কুপন তৈরি করেছেন।";
+                $vbr_mobile = $vbrMobileNumber->mobile;
 
-                // $vbr_sms_sent_response = $this->sms_sent($vbr_mobile, $vbr_sms_body);
+                $vbr_sms_sent_response = $this->sms_sent($vbr_mobile, $vbr_sms_body);
                 // dd($vbr_sms_sent_response);
             }
         } else {

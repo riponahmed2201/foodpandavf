@@ -74,21 +74,21 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6" id="check_otp_div">
+                                {{-- <div class="col-md-6" id="check_otp_div">
                                     <div class="form-group">
                                         <label>Check OTP<span style="color: red;" class="required">*</span></label>
                                         <input type="number" name="check_otp" id="check_otp" class="form-control"
                                             placeholder="Enter OTP">
                                     </div>
-                                </div>
+                                </div> --}}
 
                             </div>
                             <div class="card-footer">
 
-                                <button type="button" id="sendOTPButton" class="btn"
-                                    style="background: #D70F64; color: white">Send OTP</button>
+                                {{-- <button type="button" id="sendOTPButton" class="btn"
+                                    style="background: #D70F64; color: white">Send OTP</button> --}}
 
-                                <button type="button" id="formSubmitButton" class="btn float-right"
+                                <button type="button" id="formSubmitButton" class="btn"
                                     style="background: #D70F64; color: white">Submit</button>
                             </div>
                         </div>
@@ -118,8 +118,8 @@
                 }
             });
 
-            $("#formSubmitButton").hide();
-            $("#check_otp_div").hide();
+            // $("#formSubmitButton").hide();
+            // $("#check_otp_div").hide();
         });
 
         $(function() {
@@ -128,47 +128,47 @@
             });
         });
 
-        var check_otp_four_digit = '';
+        // var check_otp_four_digit = '';
 
-        $("#sendOTPButton").on("click", function() {
-            var mobile = $("#mobile").val();
-            console.log(mobile)
-            $.ajax({
-                url: "{{ route('sendOTPToCustomer') }}",
-                type: "POST",
-                data: {
-                    mobile: mobile
-                },
-                success: function(data) {
-                    if (data == 'mobileExists') {
-                        Toast.fire({
-                            type: 'error',
-                            title: 'Mobile number already exists.'
-                        });
-                    } else {
-                        check_otp_four_digit = data;
-                        // console.log(check_otp_four_digit)
-                        $("#sendOTPButton").hide();
-                        $("#check_otp_div").show();
-                        $("#formSubmitButton").show();
-                        $("#mobile").attr("disabled", true);
-                    }
-                },
-                error: function(data) {
-                    Toast.fire({
-                        type: 'error',
-                        title: 'Something went wrong. Please check all field.'
-                    });
-                }
-            });
-        });
+        // $("#sendOTPButton").on("click", function() {
+        //     var mobile = $("#mobile").val();
+        //     console.log(mobile)
+        //     $.ajax({
+        //         url: "{{ route('sendOTPToCustomer') }}",
+        //         type: "POST",
+        //         data: {
+        //             mobile: mobile
+        //         },
+        //         success: function(data) {
+        //             if (data == 'mobileExists') {
+        //                 Toast.fire({
+        //                     type: 'error',
+        //                     title: 'Mobile number already exists.'
+        //                 });
+        //             } else {
+        //                 check_otp_four_digit = data;
+        //                 // console.log(check_otp_four_digit)
+        //                 $("#sendOTPButton").hide();
+        //                 $("#check_otp_div").show();
+        //                 $("#formSubmitButton").show();
+        //                 $("#mobile").attr("disabled", true);
+        //             }
+        //         },
+        //         error: function(data) {
+        //             Toast.fire({
+        //                 type: 'error',
+        //                 title: 'Something went wrong. Please check all field.'
+        //             });
+        //         }
+        //     });
+        // });
 
         // form submit data and create customer
         $("#formSubmitButton").on("click", function() {
 
-            var check_otp = $("#check_otp").val();
+            // var check_otp = $("#check_otp").val();
 
-            if (check_otp == check_otp_four_digit) {
+            // if (check_otp == check_otp_four_digit) {
                 var name = $("#name").val();
                 var email = $("#email").val();
                 var mobile = $("#mobile").val();
@@ -200,10 +200,10 @@
                         $("#email").val('');
                         $("#mobile").val('');
 
-                        $("#sendOTPButton").show();
-                        $("#check_otp_div").hide();
-                        $("#formSubmitButton").hide();
-                        $("#mobile").attr("disabled", false);
+                        // $("#sendOTPButton").show();
+                        // $("#check_otp_div").hide();
+                        // $("#formSubmitButton").hide();
+                        // $("#mobile").attr("disabled", false);
                     },
                     error: function(data) {
                         // alert("Operation Failed.");
@@ -213,13 +213,12 @@
                         });
                     }
                 });
-            } else {
-                // alert("Customer OTP and your OTP do not match.");
-                Toast.fire({
-                    type: 'error',
-                    title: 'Customer OTP and your OTP do not match.'
-                });
-            }
+            // } else {
+            //     Toast.fire({
+            //         type: 'error',
+            //         title: 'Customer OTP and your OTP do not match.'
+            //     });
+            // }
         });
 
         // $("#addCustomer").on("click", function() {
