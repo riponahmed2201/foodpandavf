@@ -47,9 +47,7 @@
                                         <label>Name<span style="color: red;" class="required">*</span></label>
                                         <input type="text" name="name" id="name" value="{{ old('name') }}"
                                             class="form-control" placeholder="Enter name">
-                                        @if ($errors->has('name'))
-                                            <span class="text-danger">{{ $errors->first('name') }}</span>
-                                        @endif
+                                            <span class="text-danger" id="nameError"></span>
                                     </div>
                                 </div>
 
@@ -58,9 +56,7 @@
                                         <label>Email<span style="color: red;" class="required">*</span></label>
                                         <input type="email" name="email" id="email" value="{{ old('email') }}"
                                             class="form-control" placeholder="Enter email">
-                                        @if ($errors->has('email'))
-                                            <span class="text-danger">{{ $errors->first('email') }}</span>
-                                        @endif
+                                            <span class="text-danger" id="emailError"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -68,9 +64,7 @@
                                         <label>Mobile<span style="color: red;" class="required">*</span></label>
                                         <input type="number" name="mobile" id="mobile" value="{{ old('mobile') }}"
                                             class="form-control" placeholder="Enter mobile">
-                                        @if ($errors->has('mobile'))
-                                            <span class="text-danger">{{ $errors->first('mobile') }}</span>
-                                        @endif
+                                            <span class="text-danger" id="mobileError"></span>
                                     </div>
                                 </div>
 
@@ -169,50 +163,56 @@
             // var check_otp = $("#check_otp").val();
 
             // if (check_otp == check_otp_four_digit) {
-                var name = $("#name").val();
-                var email = $("#email").val();
-                var mobile = $("#mobile").val();
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var mobile = $("#mobile").val();
 
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('add.customer') }}",
-                    data: {
-                        name: name,
-                        email: email,
-                        mobile: mobile
-                    },
-                    success: (data) => {
-                        if (data == 'coupon') {
-                            // alert("No coupon available for customer.");
-                            Toast.fire({
-                                type: 'error',
-                                title: 'No coupon available for customer.'
-                            });
-                        }
-                        console.log(data)
-                        // alert("Customer added successfully.");
-                        Toast.fire({
-                            type: 'success',
-                            title: 'Customer added successfully.'
-                        });
-
-                        $("#name").val('');
-                        $("#email").val('');
-                        $("#mobile").val('');
-
-                        // $("#sendOTPButton").show();
-                        // $("#check_otp_div").hide();
-                        // $("#formSubmitButton").hide();
-                        // $("#mobile").attr("disabled", false);
-                    },
-                    error: function(data) {
-                        // alert("Operation Failed.");
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('add.customer') }}",
+                data: {
+                    name: name,
+                    email: email,
+                    mobile: mobile
+                },
+                success: (data) => {
+                    if (data == 'coupon') {
+                        // alert("No coupon available for customer.");
                         Toast.fire({
                             type: 'error',
-                            title: 'Operation Failed.'
+                            title: 'No coupon available for customer.'
                         });
                     }
-                });
+                    console.log(data)
+                    // alert("Customer added successfully.");
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Customer added successfully.'
+                    });
+
+                    $("#name").val('');
+                    $("#email").val('');
+                    $("#mobile").val('');
+
+                    // $("#sendOTPButton").show();
+                    // $("#check_otp_div").hide();
+                    // $("#formSubmitButton").hide();
+                    // $("#mobile").attr("disabled", false);
+                },
+                error: function(data) {
+                    var response = data.responseJSON.errors;
+                    console.log(data);
+
+                    Toast.fire({
+                        type: 'error',
+                        title: 'Operation failed.'
+                    });
+
+                    $('#nameError').text(response.name);
+                    $('#emailError').text(response.email);
+                    $('#mobileError').text(response.mobile);
+                }
+            });
             // } else {
             //     Toast.fire({
             //         type: 'error',

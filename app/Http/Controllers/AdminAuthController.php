@@ -15,7 +15,7 @@ class AdminAuthController extends Controller
     //     $this->middleware('guest:system_admin')->except('logout');
     // }
 
-    private $errors= [];
+    private $errors = [];
 
     protected $redirectTo = '/dashboard';
 
@@ -24,41 +24,41 @@ class AdminAuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request){
-    	$request->validate([
+    public function login(Request $request)
+    {
+        $request->validate([
             'email' => 'required',
             'password' => 'required'
         ]);
 
-        $auth = Admin::where('email','=', $request->email)->first();
+        $auth = Admin::where('email', '=', $request->email)->first();
         if ($auth) {
-        	if (Hash::check($request->password, $auth->password)) {
-        		session([
-                     'id' =>$auth->id,
-                     'name' =>$auth->name,
-                     'email' =>$auth->email,
-                     'role' =>$auth->role,
+            if (Hash::check($request->password, $auth->password)) {
+                session([
+                    'id' => $auth->id,
+                    'name' => $auth->name,
+                    'email' => $auth->email,
+                    'role' => $auth->role,
                 ]);
-                if ($auth->role =='admin') {
+                if ($auth->role == 'admin') {
                     return redirect('/dashboard');
-                }elseif ($auth->role =='vbr') {
+                } elseif ($auth->role == 'vbr') {
                     if ($auth->status == 1) {
                         return redirect('/vbr/dashboard');
-                    }else {
-                        return redirect('/')->with('failed','Your are not active.');
+                    } else {
+                        return redirect('/')->with('failed', 'Your are not active.');
                     }
-
-                }else{
+                } else {
                     return redirect('/');
                 }
-
-        	}else{
-        		return redirect('/')
-                ->withInput($request->only('email'))
-                ->withErrors($this->errors);
-        	}
-        }else{
-            return back()->with('failed','No account for this email');
+            } else {
+                // return redirect('/')
+                //     ->withInput($request->only('email'))
+                //     ->withErrors($this->errors);
+                return redirect('/')->with('failed', 'Password do not match.');
+            }
+        } else {
+            return back()->with('failed', 'No account for this email');
         }
     }
 

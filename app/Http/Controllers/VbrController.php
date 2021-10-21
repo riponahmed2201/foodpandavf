@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 
 class VbrController extends Controller
 {
@@ -114,14 +115,16 @@ class VbrController extends Controller
 
     public function addCustomer(Request $request)
     {
-
-        // dd($request->all());
-
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:customers',
             'mobile' => 'required|numeric|unique:customers',
         ]);
+
+        // Validate the input and return correct response
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'errors' => $validator->getMessageBag()->toArray()], 422);
+        }
 
         $auth = session('id');
         $vbrMobileNumber = DB::table('admins')->where('id', $auth)->first();
