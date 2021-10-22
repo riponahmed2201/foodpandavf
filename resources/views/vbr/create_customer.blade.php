@@ -194,6 +194,11 @@
                     $("#email").val('');
                     $("#mobile").val('');
 
+
+                    $('#nameError').empty();
+                    $('#emailError').empty();
+                    $('#mobileError').empty();
+
                     // $("#sendOTPButton").show();
                     // $("#check_otp_div").hide();
                     // $("#formSubmitButton").hide();
